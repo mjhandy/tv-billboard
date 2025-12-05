@@ -1,5 +1,5 @@
 <?php
-$folder = "path/to/your/folder";
+$folder = "assets/images";
 
 // Allowed extensions
 $allowed = ['jpg', 'jpeg', 'png', 'webp'];
@@ -14,6 +14,9 @@ foreach ($files as $file) {
         $result[] = $file;
     }
 }
+
+// Randomize order each time
+shuffle($result);
 
 header('Content-Type: application/json');
 echo json_encode($result);
