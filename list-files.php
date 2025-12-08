@@ -1,11 +1,8 @@
 <?php
 $folder = "assets/images";
-
-// Allowed extensions
 $allowed = ['jpg', 'jpeg', 'png', 'webp'];
 
 $files = array_diff(scandir($folder), ['.', '..']);
-
 $result = [];
 
 foreach ($files as $file) {
@@ -15,16 +12,21 @@ foreach ($files as $file) {
     }
 }
 
-// Randomize order each time
+// Define your cover image
+$coverImage = 'slide-0.webp';
+
+// Remove cover from the list if present
+$result = array_diff($result, [$coverImage]);
+
+// Shuffle the rest
 shuffle($result);
 
-// First image for slide-0
-$firstImage = $result[0];
+// Put cover at the front
+array_unshift($result, $coverImage);
 
 header('Content-Type: application/json');
-// echo json_encode($result);
-
 echo json_encode([
-    'slide-0' => $firstImage,
+    'slide-0' => $coverImage,
     'images' => $result
 ]);
+

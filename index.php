@@ -83,36 +83,32 @@
 <script>
 // Fetch and update the list
 function loadFiles() {
-    fetch('list-files.php')
-        .then(response => response.json())
-        .then(data => {
-            const list = document.getElementById('slide');
-            list.innerHTML = '';
+ fetch('list-files.php')
+  .then(res => res.json())
+  .then(data => {
+    const list = document.getElementById('slide');
+    list.innerHTML = '';
 
-            // Use data.images for the carousel
-            data.images.forEach((file, index) => {
-                const div = document.createElement('div');
-                div.classList.add('carousel-item');
+    data.images.forEach((file, index) => {
+      const div = document.createElement('div');
+      div.classList.add('carousel-item');
+      if (index === 0) div.classList.add('active'); // cover image
 
-                // Add "active" class to the first item
-                if (index === 0) {
-                    div.classList.add('active');
-                }
+      const img = document.createElement('img');
+      img.src = 'assets/images/' + file;
+      img.classList.add('d-block', 'w-100');
 
-                const img = document.createElement('img');
-                img.classList.add('d-block', 'w-100');
-                img.src = 'assets/images/' + file;
-                img.alt = file;
+      div.appendChild(img);
+      list.appendChild(div);
+    });
 
-                div.appendChild(img);
-                list.appendChild(div);
-            });
+    console.log("Cover image (slide-0):", data['slide-0']);
+    console.log("Image Array:", data);
+  });
 
-            // If you want to explicitly reference slide-0 elsewhere:
-            console.log("Slide-0 image:", data['slide-0']);
-        })
-        .catch(err => console.error('Error:', err));
 }
+
+
 
 
 function updateClock() {
@@ -142,6 +138,10 @@ function updateClock() {
     document.getElementById('dateTime').textContent = date + ' - ' + time;
 }
 
+
+
+
+
 updateClock();
 setInterval(updateClock, 1000);
 
@@ -150,6 +150,8 @@ loadFiles();
 
 // Refresh every 5 minutes (300,000 ms)
 setInterval(loadFiles, 300000);
+
+
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>
