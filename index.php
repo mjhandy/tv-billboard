@@ -85,11 +85,12 @@
 function loadFiles() {
     fetch('list-files.php')
         .then(response => response.json())
-        .then(files => {
+        .then(data => {
             const list = document.getElementById('slide');
             list.innerHTML = '';
 
-            files.forEach((file, index) => {
+            // Use data.images for the carousel
+            data.images.forEach((file, index) => {
                 const div = document.createElement('div');
                 div.classList.add('carousel-item');
 
@@ -98,19 +99,21 @@ function loadFiles() {
                     div.classList.add('active');
                 }
 
-                // Create the image tag
                 const img = document.createElement('img');
-                img.classList.add('d-block');
-                img.classList.add('w-100');
+                img.classList.add('d-block', 'w-100');
                 img.src = 'assets/images/' + file;
                 img.alt = file;
 
                 div.appendChild(img);
                 list.appendChild(div);
             });
+
+            // If you want to explicitly reference slide-0 elsewhere:
+            console.log("Slide-0 image:", data['slide-0']);
         })
         .catch(err => console.error('Error:', err));
 }
+
 
 function updateClock() {
     const now = new Date();
