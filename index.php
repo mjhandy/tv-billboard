@@ -4,9 +4,13 @@
     <meta charset="UTF-8">
     <title>Mader's General Store TV Billboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <meta http-equiv="refresh" content="300">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <!-- Refresh every hour -->
+    <meta http-equiv="refresh" content="3600"> 
     <style>
+
 
     
         :root{
@@ -14,12 +18,21 @@
             --footer-height: 15vh;
             --footerRow-height: 50%;
             --bg-gradient: rgba(0, 0, 0, 0.5);
+            --font-size: 125%;
         }
 
         body{
             margin: 0;
             padding: 0;
             overflow: hidden;
+            font-family: "Roboto", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-style: normal;
+            font-variation-settings:
+                "wdth" 100;
+            font-size: var(--font-size);
+
         }
 
 
@@ -31,18 +44,7 @@
             left: 0;
 
         }
-        #dateTime{
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 3vw;
-            background: var(--bg-gradient);
-            color: #fff;
-            padding: 20px;
-            z-index: 5;
-            font-family: Digi;
-            line-height: 1;
-        }
+
 
         #footer{
             position: absolute;
@@ -78,7 +80,6 @@
             white-space: nowrap;
             animation: marquee 60s linear infinite;
             height: 100%;
-            font-size: 112.5%;
         }
         #footer #news #news-feed news-item{
             font-weight: 500;
@@ -103,7 +104,7 @@
             height: 100%;
             width: 100px;
             z-index: 5;
-            font-size: 112.5%;
+            /* font-size: 112.5%; */
         }
 
         @keyframes marquee {
