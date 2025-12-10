@@ -156,9 +156,9 @@
                     video.controls = false; // optional: show controls
                     video.autoplay = true; // optional: autoplay
                     video.muted = true; // mute the video to enable auto play
-                    video.loop = true;  // optional: loop
+                    video.loop = false;  // optional: loop
                     // update the slide interval for the video
-                    div.setAttribute('data-bs-interval', '20000');
+                    div.setAttribute('data-bs-interval', '15000');
                     // add the new video tag
                     div.appendChild(video);
                 } else {
@@ -169,7 +169,7 @@
             });
 
             // console.log("Cover image (slide-0):", data['slide-0']);
-            // console.log("File Array:", data);
+            console.log("File Array:", data);
         })
         .catch(err => console.error("Error loading files:", err));
     }
