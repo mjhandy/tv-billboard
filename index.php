@@ -156,7 +156,7 @@
                     video.controls = false; // optional: show controls
                     video.autoplay = true; // optional: autoplay
                     video.muted = true; // mute the video to enable auto play
-                    video.loop = false;  // optional: loop
+                    video.loop = true;  // video needs to loop as it will continue to play even when not in focus
                     // update the slide interval for the video
                     div.setAttribute('data-bs-interval', '15000');
                     // add the new video tag
