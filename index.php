@@ -10,9 +10,6 @@
     <!-- Refresh every hour -->
     <meta http-equiv="refresh" content="3600"> 
     <style>
-
-
-    
         :root{
             
             --footer-height: 10vh;
@@ -30,6 +27,7 @@
             font-optical-sizing: auto;
             font-style: normal;                
             font-size: var(--font-size);
+            cursor: none;
 
         }
 
@@ -127,34 +125,9 @@
 
 <script>
     // Fetch and update the list
-    // function loadFiles() {
-    //     fetch('list-files.php')
-    //     .then(res => res.json())
-    //     .then(data => {
-    //         const list = document.getElementById('slide');
-    //         list.innerHTML = '';
-
-    //         data.images.forEach((file, index) => {
-    //         const div = document.createElement('div');
-    //         div.classList.add('carousel-item');
-    //         if (index === 0) div.classList.add('active'); // cover image
-
-    //         const img = document.createElement('img');
-    //         img.src = 'assets/images/' + file;
-    //         img.classList.add('d-block', 'w-100');
-
-    //         div.appendChild(img);
-    //         list.appendChild(div);
-    //         });
-
-    //         console.log("Cover image (slide-0):", data['slide-0']);
-    //         console.log("Image Array:", data);
-    //     });
-
-    // }
 
     function loadFiles() {
-    fetch('list-files.php')
+        fetch('list-files.php')
         .then(res => res.json())
         .then(data => {
             const list = document.getElementById('slide');
@@ -195,11 +168,11 @@
                 list.appendChild(div);
             });
 
-            console.log("Cover image (slide-0):", data['slide-0']);
-            console.log("File Array:", data);
+            // console.log("Cover image (slide-0):", data['slide-0']);
+            // console.log("File Array:", data);
         })
         .catch(err => console.error("Error loading files:", err));
-}
+    }
 
 
     // date time
