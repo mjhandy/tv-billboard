@@ -96,8 +96,15 @@
 <body>
 
 <!-- Billboard Images -->
-<div id="carousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-pause="false">
-    <div id="slide" class="carousel-inner"></div>
+<div 
+    id="carousel" 
+    class="carousel slide carousel-fade" 
+    data-bs-ride="carousel" 
+    data-bs-pause="false" 
+    data-bs-internal="10000">
+    <div 
+        id="slide" 
+        class="carousel-inner"></div>
 </div>
 
 
@@ -106,10 +113,7 @@
 
 <div id="footer" class="d-flex flex-column">
     <div id="weather" class="footerRow">
-        <div id="time" class="footer-brand d-flex align-items-center justify-content-center">
-            
-        </div>
-        
+        <div id="time" class="footer-brand d-flex align-items-center justify-content-center"></div>
     </div>
     <div id="news" class="footerRow">
         <div id="news-logo" class="footer-brand d-flex align-items-center justify-content-center">
@@ -119,8 +123,6 @@
             <div id="news-articles" class="carousel-inner"></div>
         </div>
     </div>
-    
-
 </div>
 
 <script>
@@ -183,7 +185,7 @@
                     video.muted = true; // mute the video to enable auto play
                     video.loop = true;  // optional: loop
                     // update the slide interval for the video
-                    div.setAttribute('data-bs-interval', '15000');
+                    div.setAttribute('data-bs-interval', '20000');
                     // add the new video tag
                     div.appendChild(video);
                 } else {
