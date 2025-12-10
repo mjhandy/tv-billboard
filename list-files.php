@@ -1,6 +1,6 @@
 <?php
-$folder = "assets/images";
-$allowed = ['jpg', 'jpeg', 'png', 'webp'];
+$folder = "assets/slides";
+$allowed = ['jpg', 'jpeg', 'png', 'webp', 'mp4'];
 
 $files = array_diff(scandir($folder), ['.', '..']);
 $result = [];

@@ -125,31 +125,79 @@
 
 <script>
     // Fetch and update the list
+    // function loadFiles() {
+    //     fetch('list-files.php')
+    //     .then(res => res.json())
+    //     .then(data => {
+    //         const list = document.getElementById('slide');
+    //         list.innerHTML = '';
+
+    //         data.images.forEach((file, index) => {
+    //         const div = document.createElement('div');
+    //         div.classList.add('carousel-item');
+    //         if (index === 0) div.classList.add('active'); // cover image
+
+    //         const img = document.createElement('img');
+    //         img.src = 'assets/images/' + file;
+    //         img.classList.add('d-block', 'w-100');
+
+    //         div.appendChild(img);
+    //         list.appendChild(div);
+    //         });
+
+    //         console.log("Cover image (slide-0):", data['slide-0']);
+    //         console.log("Image Array:", data);
+    //     });
+
+    // }
+
     function loadFiles() {
-        fetch('list-files.php')
+    fetch('list-files.php')
         .then(res => res.json())
         .then(data => {
             const list = document.getElementById('slide');
             list.innerHTML = '';
 
             data.images.forEach((file, index) => {
-            const div = document.createElement('div');
-            div.classList.add('carousel-item');
-            if (index === 0) div.classList.add('active'); // cover image
+                const div = document.createElement('div');
+                div.classList.add('carousel-item');
+                if (index === 0) div.classList.add('active'); // cover image
 
-            const img = document.createElement('img');
-            img.src = 'assets/images/' + file;
-            img.classList.add('d-block', 'w-100');
+                // Determine file type by extension
+                const ext = file.split('.').pop().toLowerCase();
 
-            div.appendChild(img);
-            list.appendChild(div);
+                if (['jpg', 'jpeg', 'png', 'gif', 'webp'].includes(ext)) {
+                    // Create image tag
+                    const img = document.createElement('img');
+                    img.src = 'assets/slides/' + file;
+                    img.classList.add('d-block', 'w-100');
+                    img.alt = file; 
+                    div.appendChild(img);
+                } else if (['mp4', 'webm', 'ogg'].includes(ext)) {
+                    // Create video tag
+                    const video = document.createElement('video');
+                    video.src = 'assets/slides/' + file; // adjust folder if needed
+                    video.classList.add('d-block', 'w-100');
+                    video.controls = false; // optional: show controls
+                    video.autoplay = true; // optional: autoplay
+                    video.muted = true; // mute the video to enable auto play
+                    video.loop = true;  // optional: loop
+                    // update the slide interval for the video
+                    div.setAttribute('data-bs-interval', '15000');
+                    // add the new video tag
+                    div.appendChild(video);
+                } else {
+                    console.warn("Unsupported file type:", file);
+                }
+
+                list.appendChild(div);
             });
 
             console.log("Cover image (slide-0):", data['slide-0']);
-            console.log("Image Array:", data);
-    });
-
-    }
+            console.log("File Array:", data);
+        })
+        .catch(err => console.error("Error loading files:", err));
+}
 
 
     // date time
@@ -182,7 +230,7 @@
                 const title = item.querySelector("title")?.textContent;
                 if (title) {
                     const span = document.createElement("news-item");
-                    console.log(title, index)
+                    // console.log(title, index)
                     span.classList.add('carousel-item');
                     if (index === 0) span.classList.add('active'); // first item
                     span.textContent = title ;
