@@ -27,7 +27,7 @@
             font-optical-sizing: auto;
             font-style: normal;                
             font-size: var(--font-size);
-            cursor: none;
+            /* cursor: none; */
 
         }
 
@@ -98,8 +98,7 @@
     id="carousel" 
     class="carousel slide carousel-fade" 
     data-bs-ride="carousel" 
-    data-bs-pause="false" 
-    data-bs-internal="10000">
+    data-bs-pause="false">
     <div 
         id="slide" 
         class="carousel-inner"></div>
@@ -126,54 +125,115 @@
 <script>
     // Fetch and update the list
 
-    function loadFiles() {
-        fetch('list-files.php')
-        .then(res => res.json())
-        .then(data => {
-            const list = document.getElementById('slide');
-            list.innerHTML = '';
+    // function loadFiles() {
+    //     fetch('list-files.php')
+    //     .then(res => res.json())
+    //     .then(data => {
+    //         const list = document.getElementById('slide');
+    //         list.innerHTML = '';
 
-            data.images.forEach((file, index) => {
-                const div = document.createElement('div');
-                div.classList.add('carousel-item');
-                if (index === 0) div.classList.add('active'); // cover image
+    //         data.images.forEach((file, index) => {
+    //             const div = document.createElement('div');
+    //             div.classList.add('carousel-item');
+    //             if (index === 0) div.classList.add('active'); // cover image
 
-                // Determine file type by extension
-                const ext = file.split('.').pop().toLowerCase();
+    //             // Determine file type by extension
+    //             const ext = file.split('.').pop().toLowerCase();
 
-                if (['jpg', 'jpeg', 'png', 'gif', 'webp'].includes(ext)) {
-                    // Create image tag
-                    const img = document.createElement('img');
-                    img.src = 'assets/slides/' + file;
-                    img.classList.add('d-block', 'w-100');
-                    img.alt = file; 
-                    div.appendChild(img);
-                } else if (['mp4', 'webm', 'ogg'].includes(ext)) {
-                    // Create video tag
-                    const video = document.createElement('video');
-                    video.src = 'assets/slides/' + file; // adjust folder if needed
-                    video.classList.add('d-block', 'w-100');
-                    video.controls = false; // optional: show controls
-                    video.autoplay = true; // optional: autoplay
-                    video.muted = true; // mute the video to enable auto play
-                    video.loop = true;  // video needs to loop as it will continue to play even when not in focus
-                    // update the slide interval for the video
-                    div.setAttribute('data-bs-interval', '15000');
-                    // add the new video tag
-                    div.appendChild(video);
-                } else {
-                    console.warn("Unsupported file type:", file);
-                }
+    //             if (['jpg', 'jpeg', 'png', 'gif', 'webp'].includes(ext)) {
+    //                 // Create image tag
+    //                 const img = document.createElement('img');
+    //                 img.src = 'assets/slides/' + file;
+    //                 img.classList.add('d-block', 'w-100');
+    //                 img.alt = file; 
+    //                 div.appendChild(img);
+    //             } else if (['mp4', 'webm', 'ogg'].includes(ext)) {
+    //                 // Create video tag
+    //                 const video = document.createElement('video');
+    //                 video.src = 'assets/slides/' + file; // adjust folder if needed
+    //                 video.classList.add('d-block', 'w-100');
+    //                 video.controls = false; // optional: show controls
+    //                 video.autoplay = false; // don't play on load
+    //                 video.muted = true; // mute the video to enable auto play
+    //                 video.loop = false;  // Looping not needed
+    //                 // update the slide interval for the video
+    //                 div.setAttribute('data-bs-interval', '15000');
+    //                 // add the new video tag
+    //                 div.appendChild(video);
+    //             } else {
+    //                 console.warn("Unsupported file type:", file);
+    //             }
 
-                list.appendChild(div);
-            });
+    //             list.appendChild(div);
+    //         });
 
-            // console.log("Cover image (slide-0):", data['slide-0']);
-            console.log("File Array:", data);
-        })
-        .catch(err => console.error("Error loading files:", err));
-    }
+    //         // console.log("Cover image (slide-0):", data['slide-0']);
+    //         console.log("File Array:", data);
+    //     })
+    //     .catch(err => console.error("Error loading files:", err));
+    // }
 
+function loadFiles() {
+    fetch('list-files.php')
+    .then(res => res.json())
+    .then(data => {
+        const list = document.getElementById('slide');
+        list.innerHTML = '';
+
+        data.images.forEach((file, index) => {
+            const div = document.createElement('div');
+            div.classList.add('carousel-item');
+            if (index === 0) div.classList.add('active');
+
+            const ext = file.split('.').pop().toLowerCase();
+
+            if (['jpg','jpeg','png','gif','webp'].includes(ext)) {
+                const img = document.createElement('img');
+                img.src = 'assets/slides/' + file;
+                img.classList.add('d-block','w-100');
+                div.appendChild(img);
+            } 
+            else if (['mp4','webm','ogg'].includes(ext)) {
+                const video = document.createElement('video');
+                video.src = 'assets/slides/' + file;
+                video.classList.add('d-block','w-100');
+                video.controls = false;
+                video.autoplay = false;
+                video.muted = true;
+                video.loop = false;
+                div.appendChild(video);
+            }
+
+            list.appendChild(div);
+        });
+
+        // ✅ ADD THIS BLOCK
+        const carouselEl = document.getElementById('carousel');
+        const carousel = bootstrap.Carousel.getOrCreateInstance(carouselEl);
+
+        carouselEl.addEventListener('slid.bs.carousel', function (event) {
+            const activeItem = event.relatedTarget;
+            const video = activeItem.querySelector('video');
+
+            if (video) {
+                // we pause the slider, then start the video from the beginning
+                console.log('Slide Paused');
+                carousel.pause();
+                video.currentTime = 0;
+                console.log('video start');
+                video.play();
+
+                // once the video has ended, we move to the next slide and restart the carousel
+                video.onended = () => {
+                    console.log('carousel restart');
+                    carousel.next(); // we move to the next slide
+                    carousel.cycle(); // we restart the carousel
+                };
+            }
+        });
+    })
+    .catch(err => console.error("Error loading files:", err));
+}
 
     // date time
     function updateClock() {
