@@ -10,5 +10,9 @@
 * Assets must be 1920 x 1080. Bottom 10% of the asset is reserved for the news and weather marque.
 * Video files must be mp4, no more than 1020 x 1080, and a max of 30 secs. Audio is not supported.
 
-# To Do
-* a weather API feed is needed
+# To Do / QA Items
+* Weather API needs further testing.
+  * icon colours need updated, as they can be hard to see against the gradiant background
+* News feed carousel can cause the time block to flicker. Seems to happen if the feed text is long.
+  * The logo, caraousel, and time blocks as position: relative which may be the issue. Maybe postion: absolute would 
+    solve the problem, though width would need to be fixed. maybe a 10|80|10 width set up would work.
