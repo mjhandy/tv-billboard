@@ -107,14 +107,28 @@
           text-align: center;
           
         }
-
-        .forecast-text{
-          margin: 0 5px;
+        .forecast-text.date::after,
+        .forecast-text.summary::after,
+        .forecast-text.temps::after{
+          content: " | ";
+          display: inline-block;
+          margin: 0 10px;
+          color: red;
+          font-weight: 700;
         }
 
-
-
-
+        /* forecast icons */
+        .wi {
+          color: #4fc3f7; /* light blue */
+        }
+        .wi-rain { color: #2f21f3ff; }
+        .wi-snow { color: #e8e8e8ff; }
+        .wi-snow-wind{
+          color: #90caf9;
+        }
+        .wi-day-sunny { color: #ffe600ff; }
+        .wi-cloudy { color: #b0bec5; }
+        .wi-thunderstorm { color: #b7a588ff; }
     </style>
 </head>
 <body>
@@ -303,8 +317,8 @@
             div.innerHTML = `
                 <div class="d-flex flex-row align-items-center justify-content-center">
                     <div class="forecast-text date">${date}</div>
-                    <div class="forecast-text icon"><i class="wi ${iconClass}"></i></div>
-                    <div class="forecast-text summary">${summary}</div>
+                    
+                    <div class="forecast-text summary"><i class="wi ${iconClass}"></i> ${summary}</div>
                     <div class="forecast-text temps">
                         ${high !== undefined ? `High ${high}°C` : ""}
                         ${low !== "" ? ` | Low ${low}°C` : ""}
