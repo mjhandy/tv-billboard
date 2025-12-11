@@ -9,4 +9,8 @@ As this is intended for retail use on one or two displays, extrernal hosting may
 
 # To Do
 * a weather API feed is needed
-* Currently, any video will constntly play and loop. Idealy the video would only play once the slide is active, then pause and reset when out of focus.
+* Currently, any video will constntly play and loop. Idealy the video would only play once the slide is active, 
+then pause and reset when out of focus. The ideal fix is:
+** Pause Video when active
+** play Video from start of video
+** restart carousel	when the video has finished
