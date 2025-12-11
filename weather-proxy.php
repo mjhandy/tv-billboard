@@ -1,7 +1,11 @@
 <?php
-header("Content-Type: application/xml");
+header("Content-Type: application/json");
+header("Access-Control-Allow-Origin: *");
 
-// Replace with your Environment Canada feed URL
-$url = "https://weather.gc.ca/rss/weather/44.567_-64.683_e.xml";
+$lat = "44.567";
+$lon = "-64.683";
 
+$url = "https://weather.gc.ca/api/app/v3/en/Location/$lat,$lon?type=city";
+
+// Fetch from Environment Canada
 echo file_get_contents($url);

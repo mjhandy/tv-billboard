@@ -7,6 +7,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <!-- Weather icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.10/css/weather-icons.min.css">
+
   <!-- Refresh every hour -->
   <meta http-equiv="refresh" content="3600"> 
     <style>
@@ -89,9 +92,27 @@
         }
 
         #footer #weather{
-            position: relative;
-            width: 100%; 
+          position: relative;
+          width: 100%;
         }
+
+        #footer  #weather #forecastCarousel{
+            color: #fff;
+            white-space: nowrap;
+            height: 100%;
+        }
+
+
+        #forecastCarousel .carousel-item {
+          text-align: center;
+          
+        }
+
+        .forecast-text{
+          margin: 0 5px;
+        }
+
+
 
 
     </style>
@@ -122,7 +143,13 @@
     <!-- Clock -->
     <div id="time" class="footer-brand d-flex align-items-center justify-content-center"></div>
   </div>
-  <div id="weather"  class="footerRow d-flex flex-row ">
+  <div id="weather" class="footerRow d-flex flex-row ">
+    <div id="forecastCarousel" class="carousel slide d-flex align-items-center flex-grow-1" data-bs-ride="carousel" data-bs-pause="false" data-bs-interval="20000">
+      <div id="forecast-slides" class="carousel-inner" ></div>
+    </div>
+  </div>
+
+
 
 </div>
 
@@ -234,7 +261,6 @@
       }
   }
 
-
   //load the news rss feed
   loadRSS();
   // clock update onload
@@ -246,7 +272,82 @@
   // Refresh every 5 minutes (300,000 ms)
   setInterval(loadFiles, 300000);
 
+
+  // forcast from Enviroment Canada
+  async function loadForecastCarousel() {
+    const url = "weather-proxy.php?t=" + Date.now();
+
+    try {
+        const res = await fetch(url);
+        const data = await res.json();
+
+        const location = data[0];
+        const daily = location.dailyFcst.daily; // 7-day array
+
+        const container = document.getElementById("forecast-slides");
+        container.innerHTML = ""; // clear old slides
+
+        daily.forEach((day, index) => {
+            const date = day.date;                       // "Thu, 11 Dec"
+            const summary = day.summary;                 // "Chance of showers"
+            const high = day.temperature.periodHigh;     // high temp
+            const low = day.temperature.periodLow ?? ""; // may not exist
+            const pop = day.precip || "";                // POP %
+            const iconClass = getWeatherIcon(summary);
+
+            // Build slide
+            const div = document.createElement("forecast-slide");
+            div.classList.add("carousel-item");
+            if (index === 0) div.classList.add("active");
+
+            div.innerHTML = `
+                <div class="d-flex flex-row align-items-center justify-content-center">
+                    <div class="forecast-text date">${date}</div>
+                    <div class="forecast-text icon"><i class="wi ${iconClass}"></i></div>
+                    <div class="forecast-text summary">${summary}</div>
+                    <div class="forecast-text temps">
+                        ${high !== undefined ? `High ${high}°C` : ""}
+                        ${low !== "" ? ` | Low ${low}°C` : ""}
+                    </div>
+                    ${pop !== "" ? `<div class="forecast-pop">POP ${pop}%</div>` : ""}
+                </div>
+            `;
+
+            container.appendChild(div);
+        });
+
+    } catch (err) {
+        console.error("Forecast carousel error:", err);
+    }
+  }
+  
+
+  function getWeatherIcon(cond) {
+      const c = (cond || "").toLowerCase();
+
+      if (c.includes("rain")) return "wi-rain";
+      if (c.includes("shower")) return "wi-showers";
+      if (c.includes("snow")) return "wi-snow";
+      if (c.includes("flurries")) return "wi-snow-wind";
+      if (c.includes("cloud") || c.includes("overcast")) return "wi-cloudy";
+      if (c.includes("sun") || c.includes("clear")) return "wi-day-sunny";
+      if (c.includes("fog") || c.includes("mist")) return "wi-fog";
+      if (c.includes("thunder") || c.includes("storm")) return "wi-thunderstorm";
+      if (c.includes("drizzle")) return "wi-sprinkle";
+      if (c.includes("hail")) return "wi-hail";
+
+      return "wi-na";
+  }
+
+  // Run it
+  loadForecastCarousel();
+  setInterval(loadForecastCarousel, 300000);
+
+
+
 </script>
+
+
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>
 </body>
