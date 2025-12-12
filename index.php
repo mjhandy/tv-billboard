@@ -16,7 +16,7 @@
       :root{
           
           --footer-height: 10vh;
-          --footer-brandWidth: 120px;
+          --footer-brandWidth: 7vw;
           --footerRow-height: 50%;
           --bg-gradient: rgba(0, 0, 0, 0.5);
           --font-size: 140%;
@@ -61,9 +61,11 @@
       }
 
       #footer .footer-brand{
-          background:#fff;
-          height: 100%;
-          width: var(--footer-brandWidth);
+        position: absolute;
+        top: 0;
+        background:#fff;
+        height: 100%;
+        width: var(--footer-brandWidth);
       }
 
       #footer #news{
@@ -73,22 +75,23 @@
       }
 
 
-        #footer #news #news-feed{
-            color: #fff;
-            white-space: nowrap;
-            height: 100%;
-            /* width: 100%; */
-        }
+      #footer #news #news-feed{
+          color: #fff;
+          white-space: nowrap;
+          height: 100%;
+          width: calc(100% - (2 *  var(--footer-brandWidth)))
+          position: absolute;
+          top: 0;
+          left: calc( var(--footer-brandWidth) +1)
+      }
 
         #footer #news #news-feed .carousel-item {
             text-align: center;
         }
 
         #footer #time{
-          position: relative;
-          height: 100%;
-          background: #fff;
-          width: var(--footer-brandWidth);
+          right: 0;
+      
         }
 
         #footer #weather{
