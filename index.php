@@ -12,127 +12,123 @@
 
   <!-- Refresh every hour -->
   <meta http-equiv="refresh" content="3600"> 
-    <style>
-      :root{
-          
-          --footer-height: 10vh;
-          --footer-brandWidth: 7vw;
-          --footerRow-height: 50%;
-          --bg-gradient: rgba(0, 0, 0, 0.5);
-          --font-size: 140%;
-      }
+  <style>
+    :root{
+        --footer-height: 10vh;
+        --footer-brandWidth: 7vw;
+        --footerRow-height: 50%;
+        --bg-gradient: rgba(0, 0, 0, 0.5);
+        --font-size: 140%;
+    }
 
-      body{
-          margin: 0;
-          padding: 0;
-          overflow: hidden;
-          font-family: "Roboto", sans-serif;
-          font-optical-sizing: auto;
-          font-style: normal;                
-          font-size: var(--font-size);
-          /* cursor: none; */
+    body{
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        font-family: "Roboto", sans-serif;
+        font-optical-sizing: auto;
+        font-style: normal;                
+        font-size: var(--font-size);
+        /* cursor: none; */
 
-      }
-
-
-
-      #carousel{
-          position: absolute;
-          top: 0;
-          right: 0;
-          bottom: 0;
-          left: 0;
-
-      }
-
-
-      #footer{
-          position: absolute;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          height: var(--footer-height);
-          background: var(--bg-gradient);
-          z-index: 5;
-      }
-
-      #footer .footerRow{
-          height: var(--footerRow-height)
-      }
-
-      #footer .footer-brand{
+    }
+    #carousel{
         position: absolute;
         top: 0;
-        background:#fff;
+        right: 0;
+        bottom: 0;
+        left: 0;
+
+    }
+    #footer{
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: var(--footer-height);
+        background: var(--bg-gradient);
+        z-index: 5;
+    }
+    #footer .footerRow{
+        height: var(--footerRow-height)
+    }
+
+    #footer .footer-brand{
+      position: absolute;
+      top: 0;
+      background:#fff;
+      height: 100%;
+      width: var(--footer-brandWidth);
+    }
+
+    #footer #news{
+        position: relative;
+        width: 100%;
+        border-bottom: 1px solid #fff;
+    }
+
+
+    #footer #news #news-feed{
+        color: #fff;
+        white-space: nowrap;
         height: 100%;
-        width: var(--footer-brandWidth);
+        width: calc(100% - (2 *  var(--footer-brandWidth)))
+        position: absolute;
+        top: 0;
+        left: calc( var(--footer-brandWidth) +1)
+    }
+
+      #footer #news #news-feed .carousel-item {
+          text-align: center;
       }
 
-      #footer #news{
-          position: relative;
-          width: 100%;
-          border-bottom: 1px solid #fff;
+      #footer #time{
+        right: 0;
+    
       }
 
+      #footer #weather{
+        position: relative;
+        width: 100%;
+      }
 
-      #footer #news #news-feed{
+      #footer  #weather #forecastCarousel{
           color: #fff;
           white-space: nowrap;
           height: 100%;
-          width: calc(100% - (2 *  var(--footer-brandWidth)))
-          position: absolute;
-          top: 0;
-          left: calc( var(--footer-brandWidth) +1)
       }
 
-        #footer #news #news-feed .carousel-item {
-            text-align: center;
-        }
 
-        #footer #time{
-          right: 0;
-      
-        }
+      #forecastCarousel .carousel-item {
+        text-align: center;
+        
+      }
+      .forecast-text.date::after,
+      .forecast-text.summary::after,
+      .forecast-text.pop::before{
+        content: " | ";
+        display: inline-block;
+        margin: 0 20px;
+        color: red;
+        font-weight: 700;
+      }
 
-        #footer #weather{
-          position: relative;
-          width: 100%;
-        }
-
-        #footer  #weather #forecastCarousel{
-            color: #fff;
-            white-space: nowrap;
-            height: 100%;
-        }
-
-
-        #forecastCarousel .carousel-item {
-          text-align: center;
-          
-        }
-        .forecast-text.date::after,
-        .forecast-text.summary::after,
-        .forecast-text.temps::after{
-          content: " | ";
-          display: inline-block;
-          margin: 0 10px;
-          color: red;
-          font-weight: 700;
-        }
-
-        /* forecast icons */
-        .wi {
-          color: #4fc3f7; /* light blue */
-        }
-        .wi-rain { color: #2f21f3ff; }
-        .wi-snow { color: #e8e8e8ff; }
-        .wi-snow-wind{
-          color: #90caf9;
-        }
-        .wi-day-sunny { color: #ffe600ff; }
-        .wi-cloudy { color: #b0bec5; }
-        .wi-thunderstorm { color: #b7a588ff; }
-    </style>
+      /* forecast icons */
+      .wi {
+        color: #4fc3f7; /* light blue */
+        margin: 0 10px 0 0;
+      }
+      .wi-rain { 
+        color: #a4d1fcff; 
+      }
+      .wi-snow { color: #e8e8e8ff; }
+      .wi-snow-wind{
+        color: #c7c7c7c7;
+      }
+      .wi-day-sunny { color: #ffe600ff; }
+      .wi-cloudy { color: #c7c7c7c7; }
+      .wi-thunderstorm { color: #c7c7c7c7; }
+  </style>
 </head>
 <body>
 
@@ -315,6 +311,7 @@
             // Build slide
             const div = document.createElement("forecast-slide");
             div.classList.add("carousel-item");
+            // the first slide needs the 'active' class to enable the slids
             if (index === 0) div.classList.add("active");
 
             div.innerHTML = `
@@ -323,10 +320,10 @@
                     
                     <div class="forecast-text summary"><i class="wi ${iconClass}"></i> ${summary}</div>
                     <div class="forecast-text temps">
-                        ${high !== undefined ? `High ${high}°C` : ""}
-                        ${low !== "" ? ` | Low ${low}°C` : ""}
+                        ${high !== undefined ? `High ${high} °C` : ""}
+                        ${low !== "" ? `Low ${low} °C` : ""}
                     </div>
-                    ${pop !== "" ? `<div class="forecast-pop">POP ${pop}%</div>` : ""}
+                    ${pop !== "" ? `<div class="forecast-text pop">POP ${pop}%</div>` : ""}
                 </div>
             `;
 
