@@ -11,4 +11,5 @@
 * Video files must be mp4, no more than 1020 x 1080, and a max of 30 secs. Audio is not supported.
 
 # To Do / QA Items
+* accomodate an asset that is portrait, rather than landscape
 * explore adding a fuel price widget
