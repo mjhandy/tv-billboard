@@ -12,7 +12,7 @@
   <style>
     :root{
         --footer-height: 10vh;
-        --footer-brandWidth: 7vw;
+        --footer-brandWidth: 9vw;
         --footerRow-height: 50%;
         --bg-gradient: rgba(0, 0, 0, 0.5);
         --font-size: 140%;
