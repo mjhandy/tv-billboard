@@ -132,7 +132,8 @@
   <div 
       id="carousel" 
       class="carousel slide carousel-fade" 
-      data-bs-ride="carousel" 
+      data-bs-ride="carousel"
+      data-bs-internal="10000" 
       data-bs-pause="false">
       <div 
         id="slide" 
@@ -164,7 +165,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>
   <script>
     // We need to hard refresh the page in case new assets need to be loaded.
-    const rt = 60; // refresh time, in minutes
+    const rt = 10; // refresh time, in minutes
     setInterval(function () {
         location.reload(true);
     }, rt * 60 * 1000); // 
@@ -212,21 +213,25 @@
             carouselEl.addEventListener('slid.bs.carousel', function (event) {
                 const activeItem = event.relatedTarget;
                 const video = activeItem.querySelector('video');
+                
 
                 if (video) {
-                    // we pause the slider, then start the video from the beginning
-                    console.log('Slide Paused');
-                    carousel.pause();
-                    video.currentTime = 0;
-                    console.log('video start');
-                    video.play();
+                  // we pause the slider, then start the video from the beginning
+                  console.log('Carousel Paused');
+                  carousel.pause();
+                  video.currentTime = 0;
+                  console.log('Video Start');
+                  video.play();
 
-                    // once the video has ended, we move to the next slide and restart the carousel
-                    video.onended = () => {
-                        console.log('carousel restart');
-                        carousel.next(); // we move to the next slide
-                        carousel.cycle(); // we restart the carousel
-                    };
+                  // once the video has ended, we move to the next slide and restart the carousel
+                  video.onended = () => {
+                    video.currentTime = 0; // reset the video the begining
+                    console.log('Video End');
+                    console.log('Carousel Next');
+                    carousel.next(); // we move to the next slide
+                    console.log('Carousel Restart');
+                    carousel.cycle(); // we restart the carousel
+                  };
                 }
             });
         })
@@ -356,6 +361,22 @@
     loadForecastCarousel();
     // set a reload time to ensure the forecast is as updated as possible
     setInterval(loadForecastCarousel, 300000);
+  </script>
+  <!-- this is a hack -->
+   <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Get carousel instance
+      const carouselElement = document.querySelector('#carousel');
+      const carousel = new bootstrap.Carousel(carouselElement, {
+        // interval: false, // Disable built-in auto-slide
+        // ride: false
+      });
+
+      // Trigger slide every 60 seconds
+      setInterval(() => {
+        carousel.cycle();
+      }, 60000 * 5); // 60,000 ms = 60 seconds
+    });
   </script>
 </body>
 </html>
