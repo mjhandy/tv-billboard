@@ -164,7 +164,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>
   <script>
     // We need to hard refresh the page in case new assets need to be loaded.
-    const rt = 10; // refresh time, in minutes
+    const rt = 5; // refresh time, in minutes
     setInterval(function () {
         location.reload(true);
     }, rt * 60 * 1000); // 
@@ -315,8 +315,8 @@
                       
                       <div class="forecast-text summary"><i class="wi ${iconClass}"></i> ${summary}</div>
                       <div class="forecast-text temps">
-                          ${high !== undefined ? `High ${high} °C` : ""}
-                          ${low !== "" ? `Low ${low} °C` : ""}
+                          ${high !== undefined ? `High of ${high} °C` : ""}
+                          ${low !== "" ? `Low of ${low} °C` : ""}
                       </div>
                       ${pop !== "" ? `<div class="forecast-text pop">POP ${pop}%</div>` : ""}
                   </div>
@@ -363,22 +363,6 @@
     // set a reload time to ensure the forecast is as updated as possible
     setInterval(loadForecastCarousel, 300000);
   </script>
-  <!-- this is a hack -->
-   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      // Get carousel instance
-      const carouselElement = document.querySelector('#carousel');
-      const carousel = new bootstrap.Carousel(carouselElement, {
-        // interval: false, // Disable built-in auto-slide
-        // ride: false
-      });
 
-      // Trigger slide every 60 seconds
-      setInterval(() => {
-        carousel.cycle();
-        console.log('carousel cycle restart');
-      }, 60000 * 5); // 60,000 ms = 60 seconds
-    });
-  </script>
 </body>
 </html>
