@@ -330,6 +330,7 @@
       }
     }
     
+    // get the approriate weather icon
     function getWeatherIcon(cond) {
         const c = (cond || "").toLowerCase();
 
