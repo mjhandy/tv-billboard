@@ -11,43 +11,41 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.10/css/weather-icons.min.css">
   <style>
     :root{
-        --footer-height: 10vh;
-        --footer-brandWidth: 9vw;
-        --footerRow-height: 50%;
-        --bg-gradient: rgba(0, 0, 0, 0.5);
-        --font-size: 140%;
+      --footer-height: 10vh;
+      --footer-brandWidth: 9vw;
+      --footerRow-height: 50%;
+      --bg-gradient: rgba(0, 0, 0, 0.5);
+      --font-size: 140%;
     }
 
     body{
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        font-family: "Roboto", sans-serif;
-        font-optical-sizing: auto;
-        font-style: normal;                
-        font-size: var(--font-size);
-        /* cursor: none; */
-
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      font-family: "Roboto", sans-serif;
+      font-optical-sizing: auto;
+      font-style: normal;                
+      font-size: var(--font-size);
+      /* cursor: none; */
     }
     #carousel{
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
     }
     #footer{
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        height: var(--footer-height);
-        background: var(--bg-gradient);
-        z-index: 5;
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: var(--footer-height);
+      background: var(--bg-gradient);
+      z-index: 5;
     }
     #footer .footerRow{
-        height: var(--footerRow-height)
+      height: var(--footerRow-height)
     }
 
     #footer .footer-brand{
@@ -56,27 +54,28 @@
       background:#fff;
       height: 100%;
       width: var(--footer-brandWidth);
+      z-index: 5;
     }
 
     #footer #news{
-        position: relative;
-        width: 100%;
-        border-bottom: 1px solid #fff;
+      position: relative;
+      width: 100%;
+      border-bottom: 1px solid #fff;
     }
 
 
     #footer #news #news-feed{
-        color: #fff;
-        white-space: nowrap;
-        height: 100%;
-        width: calc(100% - (2 *  var(--footer-brandWidth)))
-        position: absolute;
-        top: 0;
-        left: calc( var(--footer-brandWidth) +1)
+      color: #fff;
+      white-space: nowrap;
+      height: 100%;
+      width: calc(100% - (2 *  var(--footer-brandWidth)));
+      position: absolute;
+      top: 0;
+      left: calc( var(--footer-brandWidth) +1);
     }
 
       #footer #news #news-feed .carousel-item {
-          text-align: center;
+        text-align: center;
       }
 
       #footer #time{
@@ -90,9 +89,9 @@
       }
 
       #footer  #weather #forecastCarousel{
-          color: #fff;
-          white-space: nowrap;
-          height: 100%;
+        color: #fff;
+        white-space: nowrap;
+        height: 100%;
       }
 
 
@@ -173,82 +172,83 @@
   <script>
       // Fetch and update the list
     function loadFiles() {
-        fetch('list-files.php')
-        .then(res => res.json())
-        .then(data => {
-            const list = document.getElementById('slide');
-            list.innerHTML = '';
+      fetch('list-files.php')
+      .then(res => res.json())
+      .then(data => {
+        const list = document.getElementById('slide');
+        list.innerHTML = '';
 
-            data.images.forEach((file, index) => {
-                const div = document.createElement('div');
-                div.classList.add('carousel-item');
-                if (index === 0) div.classList.add('active');
+        data.images.forEach((file, index) => {
+            const div = document.createElement('div');
+            div.classList.add('carousel-item');
+            if (index === 0) div.classList.add('active');
 
-                const ext = file.split('.').pop().toLowerCase();
+            const ext = file.split('.').pop().toLowerCase();
 
-                if (['jpg','jpeg','png','gif','webp'].includes(ext)) {
-                    const img = document.createElement('img');
-                    img.src = 'assets/slides/' + file;
-                    img.classList.add('d-block','w-100');
-                    div.appendChild(img);
-                } 
-                else if (['mp4','webm','ogg'].includes(ext)) {
-                    const video = document.createElement('video');
-                    video.src = 'assets/slides/' + file;
-                    video.classList.add('d-block','w-100');
-                    video.controls = false;
-                    video.autoplay = false;
-                    video.muted = true;
-                    video.loop = false;
-                    div.appendChild(video);
-                }
+            if (['jpg','jpeg','png','gif','webp'].includes(ext)) {
+                const img = document.createElement('img');
+                img.src = 'assets/slides/' + file;
+                img.classList.add('d-block','w-100');
+                div.appendChild(img);
+            } 
+            else if (['mp4','webm','ogg'].includes(ext)) {
+                const video = document.createElement('video');
+                video.src = 'assets/slides/' + file;
+                video.classList.add('d-block','w-100');
+                video.controls = false;
+                video.autoplay = false;
+                video.muted = true;
+                video.loop = false;
+                div.appendChild(video);
+                div.classList.add('videoSlide');
+            }
 
-                list.appendChild(div);
-            });
+            list.appendChild(div);
+        });
 
+          
+        const carouselEl = document.getElementById('carousel');
+        const carousel = bootstrap.Carousel.getOrCreateInstance(carouselEl);
+
+        carouselEl.addEventListener('slid.bs.carousel', function (event) {
+            const activeItem = event.relatedTarget;
+            const video = activeItem.querySelector('video');
             
-            const carouselEl = document.getElementById('carousel');
-            const carousel = bootstrap.Carousel.getOrCreateInstance(carouselEl);
 
-            carouselEl.addEventListener('slid.bs.carousel', function (event) {
-                const activeItem = event.relatedTarget;
-                const video = activeItem.querySelector('video');
-                
+            if (video) {
+              // we pause the slider, then start the video from the beginning
+              console.log('Carousel Paused');
+              carousel.pause();
+              video.currentTime = 0;
+              console.log('Video Start');
+              video.play();
 
-                if (video) {
-                  // we pause the slider, then start the video from the beginning
-                  console.log('Carousel Paused');
-                  carousel.pause();
-                  video.currentTime = 0;
-                  console.log('Video Start');
-                  video.play();
-
-                  // once the video has ended, we move to the next slide and restart the carousel
-                  video.onended = () => {
-                    video.currentTime = 0; // reset the video the begining
-                    console.log('Video End');
-                    console.log('Carousel Next');
-                    carousel.next(); // we move to the next slide
-                    console.log('Carousel Restart');
-                    carousel.cycle(); // we restart the carousel
-                  };
-                }
-            });
-        })
-        .catch(err => console.error("Error loading files:", err));
+              // once the video has ended, we move to the next slide and restart the carousel
+              video.onended = () => {
+                // video.currentTime = 0; // reset the video the begining
+                console.log('Video End');
+                console.log('Carousel Next');
+                carousel.next(); // we move to the next slide
+                console.log('Carousel Restart');
+                carousel.cycle(); // we restart the carousel
+              };
+            }
+        });
+      })
+      .catch(err => console.error("Error loading files:", err));
     }
 
     // date time
     function updateClock() {
-        const now = new Date();
+      const now = new Date();
 
-        // Time with 2‑digit hour/minute/second
-        const time = now.toLocaleTimeString("en-US", {
-            hour: '2-digit',
-            minute: '2-digit'
-        });
+      // Time with 2‑digit hour/minute/second
+      const time = now.toLocaleTimeString("en-US", {
+          hour: '2-digit',
+          minute: '2-digit'
+      });
 
-        document.getElementById('time').textContent = time;
+      document.getElementById('time').textContent = time;
     }
 
     // news RSS
@@ -376,6 +376,7 @@
       // Trigger slide every 60 seconds
       setInterval(() => {
         carousel.cycle();
+        console.log('carousel cycle restart');
       }, 60000 * 5); // 60,000 ms = 60 seconds
     });
   </script>
