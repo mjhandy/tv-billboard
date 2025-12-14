@@ -71,7 +71,7 @@
       width: calc(100% - (2 *  var(--footer-brandWidth)));
       position: absolute;
       top: 0;
-      left: calc( var(--footer-brandWidth) +1);
+      left: var(--footer-brandWidth);
     }
 
       #footer #news #news-feed .carousel-item {
