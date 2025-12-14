@@ -3,4 +3,5 @@
 *.sass.map
 *.scss.map
 
-assets/slides
+assets/slides/*
+!assets/slides/slide-0.webp

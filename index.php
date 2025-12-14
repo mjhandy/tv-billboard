@@ -164,21 +164,65 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>
   <script>
     // We need to hard refresh the page in case new assets need to be loaded.
-    const rt = 5; // refresh time, in minutes
+    const rt = 60; // refresh time, in minutes
     setInterval(function () {
         location.reload(true);
     }, rt * 60 * 1000); // 
   </script>
-  <script>
-      // Fetch and update the list
-    function loadFiles() {
-      fetch('list-files.php')
-      .then(res => res.json())
-      .then(data => {
-        const list = document.getElementById('slide');
-        list.innerHTML = '';
+  <script>    
 
-        data.images.forEach((file, index) => {
+    // Initial load and periodic refresh every 5 minutes (no video-playing check)
+    document.addEventListener('DOMContentLoaded', () => {
+      // initial build
+      console.log('Console inital load and build');
+      loadFiles();
+
+      // schedule rebuild every 5 minutes (5 * 60 * 1000 ms)
+      setInterval(() => {
+        console.log('Rebuilding slides from server');
+        loadFiles();
+      }, 5 * 60 * 1000);
+    });
+
+    // Utility: attach video handlers (prevents double-attach)
+    function attachVideoHandlers(video, carousel) {
+      if (video._handlersAttached) return;
+      video._handlersAttached = true;
+
+      video.addEventListener('play', () => {
+        console.debug('carousel paused');
+        carousel.pause();
+      });
+
+      video.addEventListener('ended', () => {
+        console.debug('carousel next slide');
+        carousel.next();
+        console.debug('carousel next restart');
+        carousel.cycle();
+      });
+    }
+
+    // Rebuild the carousel slides from the server
+    function loadFiles() {
+      return fetch('list-files.php?t=' + Date.now())
+        .then(res => res.json())
+        .then(data => {
+          // list all the files to the console
+          console.log(data);
+          // Dispose existing carousel instance if present
+          const carouselEl = document.getElementById('carousel');
+          const oldCarouselInstance = bootstrap.Carousel.getInstance(carouselEl);
+          if (oldCarouselInstance) {
+            oldCarouselInstance.dispose();
+          }
+
+          // Replace the slide container to remove old listeners and state
+          const oldSlide = document.getElementById('slide');
+          const newSlide = oldSlide.cloneNode(false); // shallow clone (no children)
+          oldSlide.parentNode.replaceChild(newSlide, oldSlide);
+
+          // Build new slides
+          data.images.forEach((file, index) => {
             const div = document.createElement('div');
             div.classList.add('carousel-item');
             if (index === 0) div.classList.add('active');
@@ -186,58 +230,49 @@
             const ext = file.split('.').pop().toLowerCase();
 
             if (['jpg','jpeg','png','gif','webp'].includes(ext)) {
-                const img = document.createElement('img');
-                img.src = 'assets/slides/' + file;
-                img.classList.add('d-block','w-100');
-                div.appendChild(img);
-            } 
-            else if (['mp4','webm','ogg'].includes(ext)) {
-                const video = document.createElement('video');
-                video.src = 'assets/slides/' + file;
-                video.classList.add('d-block','w-100');
-                video.controls = false;
-                video.autoplay = false;
-                video.muted = true;
-                video.loop = false;
-                div.appendChild(video);
-                div.classList.add('videoSlide');
+              const img = document.createElement('img');
+              img.src = 'assets/slides/' + file;
+              img.classList.add('d-block','w-100');
+              div.appendChild(img);
+            } else if (['mp4','webm','ogg'].includes(ext)) {
+              const video = document.createElement('video');
+              video.src = 'assets/slides/' + file;
+              video.classList.add('d-block','w-100');
+              video.controls = false;
+              video.autoplay = false;
+              video.muted = true;
+              video.loop = false;
+              div.appendChild(video);
+              div.classList.add('videoSlide');
             }
 
-            list.appendChild(div);
-        });
+            // add file name as attribute
+            div.setAttribute('filename', file);
+            newSlide.appendChild(div);
+          });
 
-          
-        const carouselEl = document.getElementById('carousel');
-        const carousel = bootstrap.Carousel.getOrCreateInstance(carouselEl);
+          // Recreate carousel instance on the same element
+          const carousel = new bootstrap.Carousel(carouselEl, {});
 
-        carouselEl.addEventListener('slid.bs.carousel', function (event) {
+          // Add slide event to handle video playback when a slide becomes active
+          carouselEl.addEventListener('slid.bs.carousel', function (event) {
             const activeItem = event.relatedTarget;
             const video = activeItem.querySelector('video');
-            
 
             if (video) {
-              // we pause the slider, then start the video from the beginning
-              console.log('Carousel Paused');
               carousel.pause();
-              video.currentTime = 0;
-              console.log('Video Start');
+              video.currentTime = 0; // we need to enusre the video plays from the begging 
               video.play();
-
-              // once the video has ended, we move to the next slide and restart the carousel
-              video.onended = () => {
-                // video.currentTime = 0; // reset the video the begining
-                console.log('Video End');
-                console.log('Carousel Next');
-                carousel.next(); // we move to the next slide
-                console.log('Carousel Restart');
-                carousel.cycle(); // we restart the carousel
-              };
+              attachVideoHandlers(video, carousel);
             }
-        });
-      })
-      .catch(err => console.error("Error loading files:", err));
-    }
+          });
 
+          // Attach handlers to any videos already present (in case first slide is a video)
+          document.querySelectorAll('#slide video').forEach(v => attachVideoHandlers(v, carousel));
+        })
+        .catch(err => console.error("Error loading files:", err));
+    }
+    
     // date time
     function updateClock() {
       const now = new Date();
@@ -354,14 +389,8 @@
     updateClock();
     // clock update interval
     setInterval(updateClock, 1000);
-    // Initial load
-    loadFiles();
-    // Refresh every 5 minutes (300,000 ms)
-    setInterval(loadFiles, 300000);
     // load the carousel
     loadForecastCarousel();
-    // set a reload time to ensure the forecast is as updated as possible
-    setInterval(loadForecastCarousel, 300000);
   </script>
 
 </body>
