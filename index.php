@@ -132,7 +132,7 @@
       id="carousel" 
       class="carousel slide carousel-fade" 
       data-bs-ride="carousel"
-      data-bs-internal="10000" 
+      data-bs-internal="15000" 
       data-bs-pause="false">
       <div 
         id="slide" 
@@ -232,6 +232,7 @@
             if (['jpg','jpeg','png','gif','webp'].includes(ext)) {
               const img = document.createElement('img');
               img.src = 'assets/slides/' + file;
+              img.alt = file;
               img.classList.add('d-block','w-100');
               div.appendChild(img);
             } else if (['mp4','webm','ogg'].includes(ext)) {
@@ -272,7 +273,7 @@
         })
         .catch(err => console.error("Error loading files:", err));
     }
-    
+
     // date time
     function updateClock() {
       const now = new Date();
