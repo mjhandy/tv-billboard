@@ -47,18 +47,34 @@
     #fuel-list{
       display: flex;
       flex-flow: row;
-      gap: 10px;
     }
 
     .fuel-item{
       display: flex;
       flex-flow: row;
-      gap: 10px;
-      margin-right: 20px;
+    }
+
+    .fuel-item:after{
+      content: " | ";
+      display: inline-block;
+      margin: 0 20px;
+      color: red;
+      font-weight: 700;
+    }
+
+    .fuel-item:last-child:after{
+      content: '';
+      display: none;
     }
 
     .fuel-name{
       font-weight: 500;
+    }
+
+    .fuel-name:after{
+      content: ':';
+      display: inline-block;
+      margin: 0 5px;
     }
 
     .fuel-item:last-child{
@@ -75,6 +91,10 @@
 
     .fuel-item .up{
       color: red;
+    }
+
+    .fuel-price{
+      margin: 0 5px;
     }
 
     #fuel-date{
