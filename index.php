@@ -383,32 +383,32 @@
 
     // news RSS
     async function loadRSS() {
-        try {
-            const response = await fetch("rss-proxy.php");
-            const text = await response.text();
+      try {
+          const response = await fetch("rss-proxy.php");
+          const text = await response.text();
 
-            const parser = new DOMParser();
-            const xml = parser.parseFromString(text, "application/xml");
+          const parser = new DOMParser();
+          const xml = parser.parseFromString(text, "application/xml");
 
-            const items = xml.querySelectorAll("item");
-            const container = document.getElementById("news-feed");
-            container.innerHTML = "";
+          const items = xml.querySelectorAll("item");
+          const container = document.getElementById("news-feed");
+          container.innerHTML = "";
 
-            items.forEach((item, index) => {
-                const title = item.querySelector("title")?.textContent;
-                if (title) {
-                    const span = document.createElement("news-item");
-                    // console.log(title, index)
-                    span.classList.add('carousel-item');
-                    if (index === 0) span.classList.add('active'); // first item
-                    span.textContent = title ;
-                    container.appendChild(span);
-                }
-            });
-            
-        } catch (err) {
-            console.error("Error loading RSS:", err);
-        }
+          items.forEach((item, index) => {
+              const title = item.querySelector("title")?.textContent;
+              if (title) {
+                  const span = document.createElement("news-item");
+                  // console.log(title, index)
+                  span.classList.add('carousel-item');
+                  if (index === 0) span.classList.add('active'); // first item
+                  span.textContent = title ;
+                  container.appendChild(span);
+              }
+          });
+          
+      } catch (err) {
+        console.error("Error loading RSS:", err);
+      }
     }
 
     // forcast from Enviroment Canada
@@ -487,6 +487,7 @@
     // load the carousel
     loadForecastCarousel();
   </script>
+  <!-- Load and display updated fuel prices and changes -->
   <script>
     // Full JavaScript: fetch external CSV once on load and render date + fuel items into #fuelPrices
     // Update CSV_URL to point to your actual CSV file location
@@ -605,7 +606,7 @@
       const dateBlock = document.createElement('div');
       dateBlock.id = 'fuel-date';
       dateBlock.className = 'fuel-date-block';
-      dateBlock.textContent = `Prices as of ${latest.Date}`;
+      dateBlock.textContent =  `${latest.Date}`;
       container.appendChild(dateBlock);
 
       // Fuel list container
