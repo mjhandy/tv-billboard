@@ -55,9 +55,9 @@
     }
 
     .fuel-item:after{
-      content: " | ";
+      content: "|";
       display: inline-block;
-      margin: 0 20px;
+      margin: 0 10px;
       color: red;
       font-weight: 700;
     }
@@ -65,10 +65,6 @@
     .fuel-item:last-child:after{
       content: '';
       display: none;
-    }
-
-    .fuel-name{
-      font-weight: 500;
     }
 
     .fuel-name:after{
