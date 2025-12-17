@@ -27,8 +27,20 @@
       font-style: normal;                
       font-size: var(--font-size);
       align-items:flex-start;
+      /* padding: 10px;
+      cursor: none; */
+  
+    }
+
+    #resolution{
+      position: absolute;
+      right: 10px;
+      top: 15vh;
+      /* width: 200px; */
+      background: var(--bg-gradient);
+      color: #fff;
       padding: 10px;
-      /* cursor: none; */
+      z-index: 20;
     }
 
     #header{
@@ -104,6 +116,21 @@
       bottom: 0;
       left: 0;
     }
+
+    .kenburns img {
+      animation: kenburns 12s ease-in-out forwards;
+      transform-origin: center;
+    }
+
+    @keyframes kenburns {
+      0% {
+        transform: scale(1) translate(0, 0);
+      }
+      100% {
+        transform: scale(1.15) translate(0, 0);
+      }
+    }
+
     #footer{
       position: absolute;
       left: 0;
@@ -218,8 +245,31 @@
           </g>
           </svg>
       </div>
-      <div id="fuelPrices" class="d-flex flex-row align-items-center justify-content-center"></div>      
+      <div id="fuelPrices" class="d-flex flex-row align-items-center justify-content-center mx-5"></div>      
   </div>
+  <!-- <div id="resolution"></div>
+
+  <script>
+  const screenW = screen.width;
+  const screenH = screen.height;
+
+  const zoom = window.devicePixelRatio;
+
+  // Greatest Common Divisor to reduce the ratio
+  function gcd(a, b) {
+  return b === 0 ? a : gcd(b, a % b);
+  }
+
+  const divisor = gcd(screenW, screenH);
+  const ratioW = screenW / divisor;
+  const ratioH = screenH / divisor;
+
+  document.getElementById("resolution").textContent =
+  `${screenW}×${screenH} @ ${Math.round(zoom * 100)}% | Ratio: ${ratioW}:${ratioH}`;
+  </script> -->
+              
+              
+
   <!-- Billboard Images -->
   <div 
       id="carousel" 
@@ -316,6 +366,7 @@
             const div = document.createElement('div');
             div.classList.add('carousel-item');
             if (index === 0) div.classList.add('active');
+            else div.classList.add('kenburns');
 
             const ext = file.split('.').pop().toLowerCase();
 
