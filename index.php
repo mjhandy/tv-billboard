@@ -1,3 +1,4 @@
+<?php include 'config.php'; ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -122,8 +123,8 @@
       width: 100%;
       height: 100%;
       justify-content: center;
- background: #000;
-background: radial-gradient(circle, rgba(0, 0, 0, 0.6) 50%, rgba(0, 56, 8, 0.5) 100%);
+      background: #000;
+      background: radial-gradient(circle, rgba(0, 0, 0, 0.6) 50%, rgba(0, 56, 8, 0.5) 100%);
 
     }
 
@@ -235,28 +236,32 @@ background: radial-gradient(circle, rgba(0, 0, 0, 0.6) 50%, rgba(0, 56, 8, 0.5) 
   </style>
 </head>
 <body>
-  <div id="header" class="footerRow d-flex flex-row">
-    <div id="fuelLogo" class="brand d-flex align-items-center justify-content-center">
-      <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="35px" xml:space="preserve" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 175.7276 122.469">
-        <defs>
-          <style type="text/css">
-          <![CDATA[
-            .fil1 {fill:#E41D2C}
-            .fil0 {fill:#1264AD}
-          ]]>
-          </style>
-        </defs>
-        <g id="Layer_x0020_1">
-          <metadata />
-          <g id="_1067825216">
-          <path class="fil0" d="M-0 61.2366c0,33.8102 39.3932,61.2324 87.9241,61.2324 48.5311,-0.1628 87.8493,-27.6015 87.8034,-61.4118 0,-33.7978 -39.389,-61.0572 -87.9243,-61.0572 -48.5267,0 -87.8032,27.4221 -87.8032,61.2366zm160.8356 -0.1794l0 0c0,26.2912 -32.6086,47.6172 -72.9115,47.6172 -40.3194,0 -72.9655,-21.2217 -73.0239,-47.4378 0,-26.0995 32.6504,-47.4296 72.903,-47.4296 40.3071,-0.1752 72.9699,21.1508 73.0324,47.2502z"/>
-          <path class="fil1" d="M114.0236 46.8663c-4.1391,-2.5286 -9.48,-3.7344 -14.483,-2.8207 -1.4437,0.2921 -2.7079,0.7469 -3.9722,1.498 -1.5481,0.8512 -2.7581,2.0612 -3.8013,3.3839 -0.7385,1.1474 -1.21,2.3576 -1.4896,3.6803 -0.4547,1.9611 -0.3504,3.7427 0.121,5.8165 1.3103,5.3407 7.0643,6.4923 11.4913,8.4494 0.7552,0.2796 1.548,0.751 1.9027,1.6023 0.4547,0.9263 0.4005,2.0779 -0.4589,2.829 -0.6301,0.5674 -1.6774,0.7469 -2.4242,0.9096 -3.6219,0.2963 -7.3605,-1.21 -10.4565,-2.9834l0.0459 9.3716c1.6189,0.8554 3.0042,1.1474 4.6064,1.6023 6.3298,2.0779 14.0323,1.5063 18.401,-4.3103 2.1781,-2.9292 2.7081,-6.6636 1.4897,-10.0517 -0.6802,-1.7817 -1.7274,-3.2838 -3.3881,-4.3145 -1.3853,-1.043 -2.7081,-1.6189 -4.1976,-2.3574 -2.1906,-0.9222 -4.8235,-0.9222 -6.3883,-2.8207 -0.3964,-0.4589 -0.3964,-1.331 -0.2171,-1.9611 0.2796,-0.7385 0.5758,-1.0306 1.2644,-1.3227 1.4895,-0.5758 2.9918,-0.4589 4.5356,-0.1627 2.5868,0.3421 5.1822,1.7774 7.5355,2.8123l-0.1168 -8.85zm-28.5695 0l0 0c-4.1517,-2.5286 -9.4383,-3.576 -14.5038,-2.8207 -1.3687,0.2921 -2.6913,0.8679 -3.9556,1.6148 -1.5648,0.7344 -2.7706,1.9444 -3.8011,3.3881 -0.747,1.0264 -1.206,2.2366 -1.5023,3.5593 -0.3962,1.9611 -0.2796,3.8554 0.1795,5.8165 1.2643,5.3407 7.0225,6.6634 11.4371,8.4494 0.7469,0.2796 1.5604,0.751 1.8984,1.6023 0.4715,0.9263 0.413,2.0779 -0.3963,2.829 -0.6927,0.5674 -1.7274,0.9096 -2.4743,0.9096 -3.6219,0.2963 -7.302,-1.0305 -10.4649,-2.9834 0,0.1711 0.0585,9.4926 0.0585,9.3716 1.6023,0.8554 2.9918,1.1474 4.6065,1.7816 6.313,1.8985 14.0865,1.4438 18.3969,-4.3144 2.1821,-2.9876 2.6995,-6.6678 1.4896,-10.1227 -0.6301,-1.7816 -1.7233,-3.2087 -3.384,-4.4187 -1.3853,-0.8678 -2.7081,-1.6189 -4.2101,-2.2531 -2.1781,-0.8512 -4.7734,-1.0264 -6.3757,-2.925 -0.3965,-0.4589 -0.3965,-1.331 -0.1754,-1.9611 0.238,-0.5758 0.5133,-1.0306 1.21,-1.3227 1.4981,-0.5758 2.9834,-0.2838 4.5482,-0.1627 2.6328,0.3421 5.1614,1.7774 7.5773,2.8123l-0.1586 -8.85zm-26.9672 -10.9823l0 0c-5.0697,-3.0001 -11.4579,-3.8512 -17.2537,-2.0737 -3.7969,1.1474 -7.0808,3.5634 -8.6873,7.2435 -0.8095,1.6607 -1.2057,3.5592 -1.1473,5.5203 0.0625,4.2561 2.9292,7.711 6.4883,9.889 -0.5091,0.6342 -1.2643,0.7552 -1.9528,1.21 -1.089,0.7511 -1.9443,1.6023 -2.7539,2.6496 -1.4438,1.6606 -2.2949,3.5591 -2.5328,5.7997 -0.2336,1.8985 -0.1751,3.9764 0.4549,5.7498 1.7273,4.7735 5.879,8.1741 10.9822,9.0879 2.37,0.4548 4.6065,0.5758 6.9055,0.2922 1.8986,-0.1795 3.5051,-0.4715 5.2993,-1.0473 1.3102,-0.2754 2.4116,-0.7469 3.6801,-1.4813 0,-0.121 -1.2684,-8.6247 -1.2684,-8.6247 -3.4548,0.6301 -7.1351,2.1155 -10.64,0.6301 -2.078,-0.7511 -2.7664,-3.1044 -2.4158,-5.1781 0.2796,-1.9611 1.6022,-3.1044 3.2837,-3.7428 2.754,-1.0305 5.8583,-0.7509 8.8458,-0.7509l-0.1168 -8.1532c-2.2949,0.3421 -4.7692,0.1627 -7.2978,-0.2963 -0.8094,-0.1169 -1.4895,-0.3964 -2.2448,-0.8513 -0.6885,-0.6342 -1.1433,-1.21 -1.4979,-1.7816 -0.747,-1.5022 -0.793,-3.0043 -0.0585,-4.3145 2.5911,-4.6065 8.7456,-2.6496 12.8222,-1.1599l1.1058 -8.6164zm74.6847 16.7237l0 0c-3.1043,0 -5.1824,3.459 -5.0614,9.8388 0.1168,6.3215 2.295,9.768 5.3994,9.768 3.1668,0 5.3575,-3.5592 5.2447,-9.768 -0.121,-6.7302 -2.4158,-9.9556 -5.5828,-9.8388zm0.121 -9.0212l0 0c8.4453,-0.1168 15.4092,4.4313 15.6346,18.5178 0.2296,13.6735 -6.4924,19.148 -14.9462,19.3107 -8.4619,0.121 -15.4091,-4.5898 -15.6429,-18.6764 -0.2378,-13.8111 6.4884,-18.9767 14.9545,-19.152z"/>
+  <?php if($showFuel): ?>
+    <div id="header" class="footerRow d-flex flex-row">
+      <div id="fuelLogo" class="brand d-flex align-items-center justify-content-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="35px" xml:space="preserve" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 175.7276 122.469">
+          <defs>
+            <style type="text/css">
+            <![CDATA[
+              .fil1 {fill:#E41D2C}
+              .fil0 {fill:#1264AD}
+            ]]>
+            </style>
+          </defs>
+          <g id="Layer_x0020_1">
+            <metadata />
+            <g id="_1067825216">
+            <path class="fil0" d="M-0 61.2366c0,33.8102 39.3932,61.2324 87.9241,61.2324 48.5311,-0.1628 87.8493,-27.6015 87.8034,-61.4118 0,-33.7978 -39.389,-61.0572 -87.9243,-61.0572 -48.5267,0 -87.8032,27.4221 -87.8032,61.2366zm160.8356 -0.1794l0 0c0,26.2912 -32.6086,47.6172 -72.9115,47.6172 -40.3194,0 -72.9655,-21.2217 -73.0239,-47.4378 0,-26.0995 32.6504,-47.4296 72.903,-47.4296 40.3071,-0.1752 72.9699,21.1508 73.0324,47.2502z"/>
+            <path class="fil1" d="M114.0236 46.8663c-4.1391,-2.5286 -9.48,-3.7344 -14.483,-2.8207 -1.4437,0.2921 -2.7079,0.7469 -3.9722,1.498 -1.5481,0.8512 -2.7581,2.0612 -3.8013,3.3839 -0.7385,1.1474 -1.21,2.3576 -1.4896,3.6803 -0.4547,1.9611 -0.3504,3.7427 0.121,5.8165 1.3103,5.3407 7.0643,6.4923 11.4913,8.4494 0.7552,0.2796 1.548,0.751 1.9027,1.6023 0.4547,0.9263 0.4005,2.0779 -0.4589,2.829 -0.6301,0.5674 -1.6774,0.7469 -2.4242,0.9096 -3.6219,0.2963 -7.3605,-1.21 -10.4565,-2.9834l0.0459 9.3716c1.6189,0.8554 3.0042,1.1474 4.6064,1.6023 6.3298,2.0779 14.0323,1.5063 18.401,-4.3103 2.1781,-2.9292 2.7081,-6.6636 1.4897,-10.0517 -0.6802,-1.7817 -1.7274,-3.2838 -3.3881,-4.3145 -1.3853,-1.043 -2.7081,-1.6189 -4.1976,-2.3574 -2.1906,-0.9222 -4.8235,-0.9222 -6.3883,-2.8207 -0.3964,-0.4589 -0.3964,-1.331 -0.2171,-1.9611 0.2796,-0.7385 0.5758,-1.0306 1.2644,-1.3227 1.4895,-0.5758 2.9918,-0.4589 4.5356,-0.1627 2.5868,0.3421 5.1822,1.7774 7.5355,2.8123l-0.1168 -8.85zm-28.5695 0l0 0c-4.1517,-2.5286 -9.4383,-3.576 -14.5038,-2.8207 -1.3687,0.2921 -2.6913,0.8679 -3.9556,1.6148 -1.5648,0.7344 -2.7706,1.9444 -3.8011,3.3881 -0.747,1.0264 -1.206,2.2366 -1.5023,3.5593 -0.3962,1.9611 -0.2796,3.8554 0.1795,5.8165 1.2643,5.3407 7.0225,6.6634 11.4371,8.4494 0.7469,0.2796 1.5604,0.751 1.8984,1.6023 0.4715,0.9263 0.413,2.0779 -0.3963,2.829 -0.6927,0.5674 -1.7274,0.9096 -2.4743,0.9096 -3.6219,0.2963 -7.302,-1.0305 -10.4649,-2.9834 0,0.1711 0.0585,9.4926 0.0585,9.3716 1.6023,0.8554 2.9918,1.1474 4.6065,1.7816 6.313,1.8985 14.0865,1.4438 18.3969,-4.3144 2.1821,-2.9876 2.6995,-6.6678 1.4896,-10.1227 -0.6301,-1.7816 -1.7233,-3.2087 -3.384,-4.4187 -1.3853,-0.8678 -2.7081,-1.6189 -4.2101,-2.2531 -2.1781,-0.8512 -4.7734,-1.0264 -6.3757,-2.925 -0.3965,-0.4589 -0.3965,-1.331 -0.1754,-1.9611 0.238,-0.5758 0.5133,-1.0306 1.21,-1.3227 1.4981,-0.5758 2.9834,-0.2838 4.5482,-0.1627 2.6328,0.3421 5.1614,1.7774 7.5773,2.8123l-0.1586 -8.85zm-26.9672 -10.9823l0 0c-5.0697,-3.0001 -11.4579,-3.8512 -17.2537,-2.0737 -3.7969,1.1474 -7.0808,3.5634 -8.6873,7.2435 -0.8095,1.6607 -1.2057,3.5592 -1.1473,5.5203 0.0625,4.2561 2.9292,7.711 6.4883,9.889 -0.5091,0.6342 -1.2643,0.7552 -1.9528,1.21 -1.089,0.7511 -1.9443,1.6023 -2.7539,2.6496 -1.4438,1.6606 -2.2949,3.5591 -2.5328,5.7997 -0.2336,1.8985 -0.1751,3.9764 0.4549,5.7498 1.7273,4.7735 5.879,8.1741 10.9822,9.0879 2.37,0.4548 4.6065,0.5758 6.9055,0.2922 1.8986,-0.1795 3.5051,-0.4715 5.2993,-1.0473 1.3102,-0.2754 2.4116,-0.7469 3.6801,-1.4813 0,-0.121 -1.2684,-8.6247 -1.2684,-8.6247 -3.4548,0.6301 -7.1351,2.1155 -10.64,0.6301 -2.078,-0.7511 -2.7664,-3.1044 -2.4158,-5.1781 0.2796,-1.9611 1.6022,-3.1044 3.2837,-3.7428 2.754,-1.0305 5.8583,-0.7509 8.8458,-0.7509l-0.1168 -8.1532c-2.2949,0.3421 -4.7692,0.1627 -7.2978,-0.2963 -0.8094,-0.1169 -1.4895,-0.3964 -2.2448,-0.8513 -0.6885,-0.6342 -1.1433,-1.21 -1.4979,-1.7816 -0.747,-1.5022 -0.793,-3.0043 -0.0585,-4.3145 2.5911,-4.6065 8.7456,-2.6496 12.8222,-1.1599l1.1058 -8.6164zm74.6847 16.7237l0 0c-3.1043,0 -5.1824,3.459 -5.0614,9.8388 0.1168,6.3215 2.295,9.768 5.3994,9.768 3.1668,0 5.3575,-3.5592 5.2447,-9.768 -0.121,-6.7302 -2.4158,-9.9556 -5.5828,-9.8388zm0.121 -9.0212l0 0c8.4453,-0.1168 15.4092,4.4313 15.6346,18.5178 0.2296,13.6735 -6.4924,19.148 -14.9462,19.3107 -8.4619,0.121 -15.4091,-4.5898 -15.6429,-18.6764 -0.2378,-13.8111 6.4884,-18.9767 14.9545,-19.152z"/>
+            </g>
           </g>
-        </g>
-        </svg>
-    </div>
-    <div id="fuelPrices" class="d-flex flex-row align-items-center justify-content-center mx-5"></div>      
+          </svg>
+      </div>
+      <div id="fuelPrices" class="d-flex flex-row align-items-center justify-content-center mx-5"></div>      
   </div>
+  <script src="./scripts/fuelPrices.js"></script>
+  <?php endif; ?>
+
   <!-- <div id="resolution"></div>
 
   <script>
@@ -380,28 +385,28 @@ background: radial-gradient(circle, rgba(0, 0, 0, 0.6) 50%, rgba(0, 56, 8, 0.5) 
 
             const ext = file.split('.').pop().toLowerCase();
 
-if (['jpg','jpeg','png','gif','webp'].includes(ext)) {
-  const imgHolder = document.createElement('div');
-  imgHolder.classList.add('imgHolder');
+          if (['jpg','jpeg','png','gif','webp'].includes(ext)) {
+            const imgHolder = document.createElement('div');
+            imgHolder.classList.add('imgHolder');
 
-  const img = document.createElement('img');
-  img.src = 'assets/slides/' + file;
-  img.alt = file;
-  img.classList.add('d-block');
+            const img = document.createElement('img');
+            img.src = 'assets/slides/' + file;
+            img.alt = file;
+            img.classList.add('d-block');
 
-  imgHolder.appendChild(img);
-  div.appendChild(imgHolder);
-} else if (['mp4','webm','ogg'].includes(ext)) {
-  const video = document.createElement('video');
-  video.src = 'assets/slides/' + file;
-  video.classList.add('d-block','w-100');
-  video.controls = false;
-  video.autoplay = false;
-  video.muted = true;
-  video.loop = false;
-  div.appendChild(video);
-  div.classList.add('videoSlide');
-}
+            imgHolder.appendChild(img);
+            div.appendChild(imgHolder);
+          } else if (['mp4','webm','ogg'].includes(ext)) {
+            const video = document.createElement('video');
+            video.src = 'assets/slides/' + file;
+            video.classList.add('d-block','w-100');
+            video.controls = false;
+            video.autoplay = false;
+            video.muted = true;
+            video.loop = false;
+            div.appendChild(video);
+            div.classList.add('videoSlide');
+          }
 
 
             // add file name as attribute
@@ -552,161 +557,7 @@ if (['jpg','jpeg','png','gif','webp'].includes(ext)) {
   </script>
   <!-- Load and display updated fuel prices and changes -->
   <script>
-    // Full JavaScript: fetch external CSV once on load and render date + fuel items into #fuelPrices
-    // Update CSV_URL to point to your actual CSV file location
-    const CSV_URL = 'assets/fuel-prices.csv';
 
-    // Parse CSV text into array of objects (simple CSV without quoted commas)
-    function parseCSV(text) {
-      const lines = text.trim().split(/\r?\n/).filter(Boolean);
-      if (!lines.length) return [];
-      const headers = lines.shift().split(',').map(h => h.trim());
-      return lines.map(line => {
-        const cols = line.split(',').map(c => c.trim());
-        const obj = {};
-        headers.forEach((h, i) => obj[h] = cols[i] ?? '');
-        return obj;
-      });
-    }
-
-    // Convert date string like "12-Dec-25" or "12-Dec-2025" to a Date for sorting
-    function parseDate(d) {
-      if (!d) return new Date(0);
-      const parts = d.split('-');
-      if (parts.length !== 3) return new Date(d);
-      const day = parseInt(parts[0], 10);
-      const monthStr = parts[1].slice(0,3).toLowerCase();
-      const year = parts[2].length === 2 ? '20' + parts[2] : parts[2];
-      const monthNames = {
-        jan: '01', feb: '02', mar: '03', apr: '04', may: '05', jun: '06',
-        jul: '07', aug: '08', sep: '09', oct: '10', nov: '11', dec: '12'
-      };
-      const m = monthNames[monthStr] || '01';
-      return new Date(`${year}-${m}-${String(day).padStart(2,'0')}`);
-    }
-
-    // Build a single fuel item DIV — concise change text (e.g., "Down 4.0")
-    function buildFuelItem(name, curVal, prevVal) {
-      const item = document.createElement('div');
-      item.className = 'fuel-item ';
-
-      // Left meta (name + small label)
-      const meta = document.createElement('div');
-      meta.style.display = 'flex';
-      meta.style.flexDirection = 'row';
-      meta.innerHTML = `<div class="fuel-name">${name}</div>`;
-
-      // Change block (icon + concise text)
-      const change = document.createElement('div');
-      change.className = 'fuel-change';
-      change.style.display = 'flex';
-      change.style.flexDirection = 'row';
-
-      let icon = '—', cls = 'same', title = 'No previous value', changeText = 'No previous';
-      if (prevVal !== null && !isNaN(prevVal) && !isNaN(curVal)) {
-        const diff = Math.abs(curVal - prevVal);
-        if (curVal > prevVal) {
-          icon = '▲';
-          cls = 'up';
-          title = `${prevVal.toFixed(1)}`;
-          changeText = ` ${diff.toFixed(1)}`;
-        } else if (curVal < prevVal) {
-          icon = '▼';
-          cls = 'down';
-          title = `${prevVal.toFixed(1)}`;
-          changeText = ` ${diff.toFixed(1)}`;
-        } else {
-          icon = '—';
-          cls = 'same';
-          title = `No change ${prevVal.toFixed(1)}`;
-          changeText = 'NC';
-        }
-      }
-
-      const iconEl = document.createElement('span');
-      iconEl.className = `change-icon ${cls}`;
-      iconEl.setAttribute('title', title);
-      iconEl.setAttribute('aria-hidden', 'true');
-      iconEl.textContent = icon;
-
-      const textEl = document.createElement('div');
-      textEl.className = 'change-text';
-      textEl.textContent = changeText;
-
-      change.appendChild(iconEl);
-      change.appendChild(textEl);
-
-      // Price on the right
-      const price = document.createElement('div');
-      price.className = 'fuel-price';
-      price.textContent = isNaN(curVal) ? '-' : curVal.toFixed(1);
-
-      item.appendChild(meta);
-      item.appendChild(price);
-      item.appendChild(change);
-      
-
-      return item;
-    }
-
-    // Render date and fuel items into #fuelPrices
-    function renderFuelDivs(rows) {
-      const container = document.getElementById('fuelPrices');
-      if (!container) return;
-      container.innerHTML = '';
-
-      if (!rows || rows.length === 0) {
-        container.textContent = 'No price data available';
-        return;
-      }
-
-      // sort by date ascending and pick latest two
-      rows.sort((a, b) => parseDate(a.Date) - parseDate(b.Date));
-      const latest = rows[rows.length - 1];
-      const previous = rows.length > 1 ? rows[rows.length - 2] : null;
-
-      // Date block (single)
-      const dateBlock = document.createElement('div');
-      dateBlock.id = 'fuel-date';
-      dateBlock.className = 'fuel-date-block';
-      dateBlock.textContent =  `${latest.Date}`;
-      container.appendChild(dateBlock);
-
-      // Fuel list container
-      const list = document.createElement('div');
-      list.id = 'fuel-list';
-      list.className = 'fuel-list';
-
-      const fuelCols = Object.keys(latest).filter(h => h !== 'Date');
-      fuelCols.forEach(col => {
-        const curVal = parseFloat(latest[col]);
-        const prevVal = previous ? parseFloat(previous[col]) : null;
-        const item = buildFuelItem(col, curVal, prevVal);
-        list.appendChild(item);
-      });
-
-      container.appendChild(list);
-    }
-
-    // Fetch CSV and render once on load (cache-busted)
-    async function fetchAndRender() {
-      try {
-        const res = await fetch(CSV_URL + '?t=' + Date.now(), { cache: 'no-store' });
-        if (!res.ok) throw new Error('Network response not ok: ' + res.status);
-        const text = await res.text();
-        const rows = parseCSV(text);
-        renderFuelDivs(rows);
-      } catch (err) {
-        console.error('Error loading CSV:', err);
-        const container = document.getElementById('fuelPrices');
-        if (container) container.textContent = 'Error loading prices';
-      }
-    }
-
-    // Run on DOMContentLoaded
-    document.addEventListener('DOMContentLoaded', () => {
-      fetchAndRender();
-    });
 
   </script>
 </body>
