@@ -33,16 +33,7 @@
   
     }
 
-    #resolution{
-      position: absolute;
-      right: 10px;
-      top: 15vh;
-      /* width: 200px; */
-      background: var(--bg-gradient);
-      color: #fff;
-      padding: 10px;
-      z-index: 20;
-    }
+
 
     #header{
       position: absolute;
@@ -262,26 +253,39 @@
   <script src="./scripts/fuelPrices.js"></script>
   <?php endif; ?>
 
-  <!-- <div id="resolution"></div>
+  <?php if($debugBlock): ?>
+    <div id="debug"></div>
+    <style>
+      #debug{
+        position: absolute;
+        right: 10px;
+        top: 15vh;
+        /* width: 200px; */
+        background: var(--bg-gradient);
+        color: #fff;
+        padding: 10px;
+        z-index: 20;
+      }
+    </style>
+    <script>
+      const screenW = screen.width;
+      const screenH = screen.height;
 
-  <script>
-  const screenW = screen.width;
-  const screenH = screen.height;
+      const zoom = window.devicePixelRatio;
 
-  const zoom = window.devicePixelRatio;
+      // Greatest Common Divisor to reduce the ratio
+      function gcd(a, b) {
+        return b === 0 ? a : gcd(b, a % b);
+      }
 
-  // Greatest Common Divisor to reduce the ratio
-  function gcd(a, b) {
-  return b === 0 ? a : gcd(b, a % b);
-  }
+      const divisor = gcd(screenW, screenH);
+      const ratioW = screenW / divisor;
+      const ratioH = screenH / divisor;
 
-  const divisor = gcd(screenW, screenH);
-  const ratioW = screenW / divisor;
-  const ratioH = screenH / divisor;
+      document.getElementById("debug").textContent = `${screenW}×${screenH} @ ${Math.round(zoom * 100)}% | Ratio: ${ratioW}:${ratioH}`;
+    </script>
+  <?php endif; ?>
 
-  document.getElementById("resolution").textContent =
-  `${screenW}×${screenH} @ ${Math.round(zoom * 100)}% | Ratio: ${ratioW}:${ratioH}`;
-  </script> -->
               
               
 
@@ -555,10 +559,6 @@
     // load the carousel
     loadForecastCarousel();
   </script>
-  <!-- Load and display updated fuel prices and changes -->
-  <script>
 
-
-  </script>
 </body>
 </html>
