@@ -117,6 +117,16 @@
       left: 0;
     }
 
+    #carousel .imgHolder{
+      display: flex;
+      width: 100%;
+      height: 100%;
+      justify-content: center;
+ background: #000;
+background: radial-gradient(circle, rgba(0, 0, 0, 0.6) 50%, rgba(0, 56, 8, 0.5) 100%);
+
+    }
+
     .kenburns img {
       animation: kenburns 12s ease-in-out forwards;
       transform-origin: center;
@@ -370,23 +380,29 @@
 
             const ext = file.split('.').pop().toLowerCase();
 
-            if (['jpg','jpeg','png','gif','webp'].includes(ext)) {
-              const img = document.createElement('img');
-              img.src = 'assets/slides/' + file;
-              img.alt = file;
-              img.classList.add('d-block','w-100');
-              div.appendChild(img);
-            } else if (['mp4','webm','ogg'].includes(ext)) {
-              const video = document.createElement('video');
-              video.src = 'assets/slides/' + file;
-              video.classList.add('d-block','w-100');
-              video.controls = false;
-              video.autoplay = false;
-              video.muted = true;
-              video.loop = false;
-              div.appendChild(video);
-              div.classList.add('videoSlide');
-            }
+if (['jpg','jpeg','png','gif','webp'].includes(ext)) {
+  const imgHolder = document.createElement('div');
+  imgHolder.classList.add('imgHolder');
+
+  const img = document.createElement('img');
+  img.src = 'assets/slides/' + file;
+  img.alt = file;
+  img.classList.add('d-block');
+
+  imgHolder.appendChild(img);
+  div.appendChild(imgHolder);
+} else if (['mp4','webm','ogg'].includes(ext)) {
+  const video = document.createElement('video');
+  video.src = 'assets/slides/' + file;
+  video.classList.add('d-block','w-100');
+  video.controls = false;
+  video.autoplay = false;
+  video.muted = true;
+  video.loop = false;
+  div.appendChild(video);
+  div.classList.add('videoSlide');
+}
+
 
             // add file name as attribute
             div.setAttribute('filename', file);
