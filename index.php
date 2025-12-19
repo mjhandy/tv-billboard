@@ -10,96 +10,18 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
   <!-- Weather icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.10/css/weather-icons.min.css">
+  <link rel="stylesheet" href="./css/main.css">
   <style>
-    :root{
-      --footer-height: 10vh;
-      --brandWidth: 9vw;
-      --footerRow-height: 50%;
-      --bg-gradient: rgba(0, 0, 0, 0.5);
-      --font-size: 140%;
-    }
-
-    body{
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-      font-family: "Roboto", sans-serif;
-      font-optical-sizing: auto;
-      font-style: normal;                
-      font-size: var(--font-size);
-      align-items:flex-start;
-      /* padding: 10px;
-      cursor: none; */
-  
-    }
 
 
 
-    #header{
-      position: absolute;
-      top: 0;
-      right: 0;
-      left: 0;
-      height: 50px;
-      z-index: 5;
-      background: var(--bg-gradient);
-      display: flex;
-      gap: 12px;
-      color: #fff;
-    }
 
-    #fuel-list{
-      display: flex;
-      flex-flow: row;
-    }
-
-    .fuel-item{
-      display: flex;
-      flex-flow: row;
-    }
-
-    .fuel-item:after{
-      content: "|";
-      display: inline-block;
-      margin: 0 10px;
-      color: red;
-      font-weight: 700;
-    }
-
-    .fuel-item:last-child:after{
-      content: '';
-      display: none;
-    }
-
-    .fuel-name:after{
-      content: ':';
-      display: inline-block;
-      margin: 0 5px;
-    }
-
-    .fuel-item:last-child{
-      margin: 0;
-    }
     
-    .change-icon{
-      margin-right: 5px;
-    }
 
-    .fuel-item .down{
-      color: green;
-    }
 
-    .fuel-item .up{
-      color: red;
-    }
 
-    .fuel-price{
-      margin: 0 5px;
-    }
 
-    #fuel-date{
-      margin-right: 20px;
-    }
+
 
     #carousel{
       position: absolute;
@@ -147,16 +69,6 @@
       height: var(--footerRow-height)
     }
 
-    #footer .brand,
-    #header .brand{
-      position: absolute;
-      top: 0;
-      background:#fff;
-      height: 100%;
-      width: var(--brandWidth);
-      z-index: 5;
-    }
-
     #footer #news{
       position: relative;
       width: 100%;
@@ -164,8 +76,7 @@
     }
 
 
-    #footer #news #news-feed,
-    #header #fuelPrices{
+    #footer #news #news-feed{
       color: #fff;
       white-space: nowrap;
       height: 100%;
@@ -227,8 +138,8 @@
   </style>
 </head>
 <body>
-  <?php if($showFuel): ?>
-    <div id="header" class="footerRow d-flex flex-row">
+  <div id="header" class="footerRow d-flex flex-row">
+      <?php if($showFuel): ?>
       <div id="fuelLogo" class="brand d-flex align-items-center justify-content-center">
         <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="35px" xml:space="preserve" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 175.7276 122.469">
           <defs>
@@ -249,9 +160,11 @@
           </svg>
       </div>
       <div id="fuelPrices" class="d-flex flex-row align-items-center justify-content-center mx-5"></div>      
+      <link rel="stylesheet" href="./css/fuelPrices.css">
+      <script src="./scripts/fuelPrices.js"></script>
+    <?php endif; ?>
   </div>
-  <script src="./scripts/fuelPrices.js"></script>
-  <?php endif; ?>
+
 
   <?php if($debugBlock): ?>
     <div id="debug"></div>

@@ -1,0 +1,40 @@
+@use 'root';
+
+
+// reset
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-size: var(--font-size);
+  align-items: flex-start;
+
+
+}
+
+// global items
+#header {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 50px;
+  z-index: 5;
+  background: var(--bg-gradient);
+
+  gap: 12px;
+  color: #fff;
+}
+
+
+.brand {
+  position: absolute;
+  top: 0;
+  background: #fff;
+  height: 100%;
+  width: var(--brandWidth);
+  z-index: 5;
+}

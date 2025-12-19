@@ -1,0 +1,69 @@
+#fuelPrices {
+  color: #fff;
+  white-space: nowrap;
+  height: 100%;
+  width: calc(100% - (2 * var(--brandWidth)));
+  position: absolute;
+  top: 0;
+  left: var(--brandWidth);
+
+  #fuel-date {
+    margin-right: 20px;
+  }
+
+  #fuel-list {
+    display: flex;
+    flex-flow: row;
+
+    .fuel {
+      &-item {
+        display: flex;
+        flex-flow: row;
+
+        .change-icon {
+          margin-right: 5px;
+
+          &.down {
+            color: green;
+          }
+
+          &.up {
+            color: red;
+          }
+        }
+
+        &:after {
+          content: "|";
+          display: inline-block;
+          margin: 0 10px;
+          color: red;
+          font-weight: 700;
+        }
+
+        &:last-child {
+          margin: 0;
+
+          &:after {
+            content: '';
+            display: none;
+          }
+        }
+      }
+
+      &-name {
+        &:after {
+          content: ':';
+          display: inline-block;
+          margin: 0 5px;
+        }
+      }
+
+      &-price {
+        margin: 0 5px;
+      }
+
+
+
+    }
+  }
+}
