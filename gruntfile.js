@@ -16,12 +16,18 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           cwd: 'scss',
-          src: [
-            '*.scss',
-          ],
+          src: ['main.scss'],
           dest: 'css',
           ext: '.css'
-        }]
+        },
+        {
+          expand: true,
+          cwd: 'scss',
+          src: ['weatherForecast.scss'],
+          dest: 'components/weather',
+          ext: '.css'
+        }
+      ]
       }
 
     },

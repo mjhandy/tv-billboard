@@ -5,3 +5,4 @@
 
 assets/slides/*
 !assets/slides/slide-0.webp
+/node_modules

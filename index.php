@@ -94,7 +94,7 @@
 </head>
 <body>
   <div id="header" class="hf_row d-flex flex-row">
-      <?php if($showFuel): ?>
+    <?php if($showFuel): ?>
       <div id="fuelLogo" class="brand d-flex align-items-center justify-content-center">
         <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="35px" xml:space="preserve" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 175.7276 122.469">
           <defs>
@@ -190,6 +190,7 @@
       </div>
     </div>
     <script src="./components/weather/weather_api.js"></script>
+    <link rel="stylesheet" href="./components/weather/weatherForcecast.css">
   </div>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>
