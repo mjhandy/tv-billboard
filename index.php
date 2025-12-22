@@ -186,9 +186,10 @@
     </div>
     <div id="weather" class="hf_row d-flex flex-row ">
       <div id="forecastCarousel" class="carousel slide d-flex align-items-center flex-grow-1" data-bs-ride="carousel" data-bs-pause="false" data-bs-interval="20000">
-        <div id="forecast-slides" class="carousel-inner" ></div>
+        <div id="forecastInner" class="carousel-inner" ></div>
       </div>
     </div>
+    <script src="./components/weather/weather_api.js"></script>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>
@@ -345,53 +346,53 @@
     }
 
     // forcast from Enviroment Canada
-    async function loadForecastCarousel() {
-      const url = "weather-proxy.php?t=" + Date.now();
+    // async function loadForecastCarousel() {
+    //   const url = "weather-proxy.php?t=" + Date.now();
 
-      try {
-          const res = await fetch(url);
-          const data = await res.json();
+    //   try {
+    //       const res = await fetch(url);
+    //       const data = await res.json();
 
-          const location = data[0];
-          const daily = location.dailyFcst.daily; // 7-day array
+    //       const location = data[0];
+    //       const daily = location.dailyFcst.daily; // 7-day array
 
-          const container = document.getElementById("forecast-slides");
-          container.innerHTML = ""; // clear old slides
+    //       const container = document.getElementById("forecast-slides");
+    //       container.innerHTML = ""; // clear old slides
 
-          daily.forEach((day, index) => {
-              const date = day.date;                       // "Thu, 11 Dec"
-              const summary = day.summary;                 // "Chance of showers"
-              const high = day.temperature.periodHigh;     // high temp
-              const low = day.temperature.periodLow ?? ""; // may not exist
-              const pop = day.precip || "";                // POP %
-              const iconClass = getWeatherIcon(summary);
+    //       daily.forEach((day, index) => {
+    //           const date = day.date;                       // "Thu, 11 Dec"
+    //           const summary = day.summary;                 // "Chance of showers"
+    //           const high = day.temperature.periodHigh;     // high temp
+    //           const low = day.temperature.periodLow ?? ""; // may not exist
+    //           const pop = day.precip || "";                // POP %
+    //           const iconClass = getWeatherIcon(summary);
 
-              // Build slide
-              const div = document.createElement("forecast-slide");
-              div.classList.add("carousel-item");
-              // the first slide needs the 'active' class to enable the slids
-              if (index === 0) div.classList.add("active");
+    //           // Build slide
+    //           const div = document.createElement("forecast-slide");
+    //           div.classList.add("carousel-item");
+    //           // the first slide needs the 'active' class to enable the slids
+    //           if (index === 0) div.classList.add("active");
 
-              div.innerHTML = `
-                  <div class="d-flex flex-row align-items-center justify-content-center">
-                      <div class="forecast-text date">${date}</div>
+    //           div.innerHTML = `
+    //               <div class="d-flex flex-row align-items-center justify-content-center">
+    //                   <div class="forecast-text date">${date}</div>
                       
-                      <div class="forecast-text summary"><i class="wi ${iconClass}"></i> ${summary}</div>
-                      <div class="forecast-text temps">
-                          ${high !== undefined ? `High of ${high} °C` : ""}
-                          ${low !== "" ? `Low of ${low} °C` : ""}
-                      </div>
-                      ${pop !== "" ? `<div class="forecast-text pop">POP ${pop}%</div>` : ""}
-                  </div>
-              `;
+    //                   <div class="forecast-text summary"><i class="wi ${iconClass}"></i> ${summary}</div>
+    //                   <div class="forecast-text temps">
+    //                       ${high !== undefined ? `High of ${high} °C` : ""}
+    //                       ${low !== "" ? `Low of ${low} °C` : ""}
+    //                   </div>
+    //                   ${pop !== "" ? `<div class="forecast-text pop">POP ${pop}%</div>` : ""}
+    //               </div>
+    //           `;
 
-              container.appendChild(div);
-          });
+    //           container.appendChild(div);
+    //       });
 
-      } catch (err) {
-          console.error("Forecast carousel error:", err);
-      }
-    }
+    //   } catch (err) {
+    //       console.error("Forecast carousel error:", err);
+    //   }
+    // }
     
     // get the approriate weather icon
     function getWeatherIcon(cond) {
@@ -415,7 +416,7 @@
     loadRSS();
 
     // load the carousel
-    loadForecastCarousel();
+    // loadForecastCarousel();
   </script>
 
 </body>
