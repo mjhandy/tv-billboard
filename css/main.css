@@ -4,6 +4,8 @@
   --hf_Row-height: 50%;
   --bg-gradient: rgba(0, 0, 0, 0.5);
   --font-size: 140%;
+  --black: #000;
+  --white: #fff;
 }
 
 #carousel {

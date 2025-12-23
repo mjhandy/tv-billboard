@@ -27,7 +27,7 @@
     #footer #news{
       position: relative;
       width: 100%;
-      border-bottom: 1px solid #fff;
+      border-bottom: 1px solid var(--black);
     }
 
 
@@ -50,46 +50,10 @@
   
     }
 
-    #footer #weather{
-      position: relative;
-      width: 100%;
-    }
-
-    #footer  #weather #forecastCarousel{
-      color: #fff;
-      white-space: nowrap;
-      height: 100%;
-    }
 
 
-    #forecastCarousel .carousel-item {
-      text-align: center;      
-    }
-    .forecast-text.date::after,
-    .forecast-text.summary::after,
-    .forecast-text.pop::before{
-      content: " | ";
-      display: inline-block;
-      margin: 0 20px;
-      color: red;
-      font-weight: 700;
-    }
 
-    /* forecast icons */
-    .wi {
-      color: #4fc3f7; /* light blue */
-      margin: 0 10px 0 0;
-    }
-    .wi-rain { 
-      color: #a4d1fcff; 
-    }
-    .wi-snow { color: #e8e8e8ff; }
-    .wi-snow-wind{
-      color: #c7c7c7c7;
-    }
-    .wi-day-sunny { color: #ffe600ff; }
-    .wi-cloudy { color: #c7c7c7c7; }
-    .wi-thunderstorm { color: #c7c7c7c7; }
+
   </style>
 </head>
 <body>
@@ -184,14 +148,17 @@
         <script src="./scripts/clock.js"></script>
       <?php endif; ?>
     </div>
+    <!-- Weather Start -->
     <div id="weather" class="hf_row d-flex flex-row ">
       <div id="forecastCarousel" class="carousel slide d-flex align-items-center flex-grow-1" data-bs-ride="carousel" data-bs-pause="false" data-bs-interval="20000">
         <div id="forecastInner" class="carousel-inner" ></div>
       </div>
     </div>
-    <script src="./components/weather/weather_api.js"></script>
-    <link rel="stylesheet" href="./components/weather/weatherForcecast.css">
+    <script src="./components/weather/weather-proxy.js"></script>
+    <link rel="stylesheet" href="./components/weather/weatherForecast.css">
+    <!-- Weather End -->
   </div>
+
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>
   <!-- Page Reload -->
@@ -345,79 +312,10 @@
         console.error("Error loading RSS:", err);
       }
     }
-
-    // forcast from Enviroment Canada
-    // async function loadForecastCarousel() {
-    //   const url = "weather-proxy.php?t=" + Date.now();
-
-    //   try {
-    //       const res = await fetch(url);
-    //       const data = await res.json();
-
-    //       const location = data[0];
-    //       const daily = location.dailyFcst.daily; // 7-day array
-
-    //       const container = document.getElementById("forecast-slides");
-    //       container.innerHTML = ""; // clear old slides
-
-    //       daily.forEach((day, index) => {
-    //           const date = day.date;                       // "Thu, 11 Dec"
-    //           const summary = day.summary;                 // "Chance of showers"
-    //           const high = day.temperature.periodHigh;     // high temp
-    //           const low = day.temperature.periodLow ?? ""; // may not exist
-    //           const pop = day.precip || "";                // POP %
-    //           const iconClass = getWeatherIcon(summary);
-
-    //           // Build slide
-    //           const div = document.createElement("forecast-slide");
-    //           div.classList.add("carousel-item");
-    //           // the first slide needs the 'active' class to enable the slids
-    //           if (index === 0) div.classList.add("active");
-
-    //           div.innerHTML = `
-    //               <div class="d-flex flex-row align-items-center justify-content-center">
-    //                   <div class="forecast-text date">${date}</div>
-                      
-    //                   <div class="forecast-text summary"><i class="wi ${iconClass}"></i> ${summary}</div>
-    //                   <div class="forecast-text temps">
-    //                       ${high !== undefined ? `High of ${high} °C` : ""}
-    //                       ${low !== "" ? `Low of ${low} °C` : ""}
-    //                   </div>
-    //                   ${pop !== "" ? `<div class="forecast-text pop">POP ${pop}%</div>` : ""}
-    //               </div>
-    //           `;
-
-    //           container.appendChild(div);
-    //       });
-
-    //   } catch (err) {
-    //       console.error("Forecast carousel error:", err);
-    //   }
-    // }
     
-    // get the approriate weather icon
-    function getWeatherIcon(cond) {
-        const c = (cond || "").toLowerCase();
-
-        if (c.includes("rain")) return "wi-rain";
-        if (c.includes("shower")) return "wi-showers";
-        if (c.includes("snow")) return "wi-snow";
-        if (c.includes("flurries")) return "wi-snow-wind";
-        if (c.includes("cloud") || c.includes("overcast")) return "wi-cloudy";
-        if (c.includes("sun") || c.includes("clear")) return "wi-day-sunny";
-        if (c.includes("fog") || c.includes("mist")) return "wi-fog";
-        if (c.includes("thunder") || c.includes("storm")) return "wi-thunderstorm";
-        if (c.includes("drizzle")) return "wi-sprinkle";
-        if (c.includes("hail")) return "wi-hail";
-
-        return "wi-na";
-    }
-
     //load the news rss feed
     loadRSS();
 
-    // load the carousel
-    // loadForecastCarousel();
   </script>
 
 </body>
