@@ -60,9 +60,11 @@ function buildFullCarousel(current, days) {
             <div class="forecast forecast_date">Current Conditions: </div>    
             <div class="forecast forecast_temp" id="temp">${current.temperature}°</div>
             <div class="forecast forecast_verbose">${current.weather_label}</div>
-            <img id="current-icon" class="weather-icon" src="./assets/weather_icons/${currentIcon}" width="50">    
-            <div class="forecast forecast_feelLike">Feels like: <span id="feels">${current.apparent}°</span></div>
-            <div class="forecast forecast_humidity">Humidity: <span id="humidity">${current.humidity}%</span></div>
+            <div class="forecast forecast_icon">
+                <img id="current-icon" class="weather-icon" src="./assets/weather_icons/${currentIcon}" width="50">
+            </div>
+            <div class="forecast forecast_feelLike divider-right divider-left">Feels like: <span id="feels">${current.apparent}°</span></div>
+            <div class="forecast forecast_humidity divider-right">Humidity: <span id="humidity">${current.humidity}%</span></div>
             <div class="forecast forecast_precip">Precip: <span id="precip">${current.precipitation} mm</span></div>
         </div>
     `;
@@ -81,10 +83,12 @@ function buildFullCarousel(current, days) {
 
         slide.innerHTML = `
             <div class="d-flex flex-row align-items-center justify-content-center">
-                <div class="forecast forecast_date">${formattedDate}</div>
+                <div class="forecast forecast_date divider-right">${formattedDate}</div>
                 <div class="forecast forecast_verbose">${day.weather_label}</div>
-                <img src="./assets/weather_icons/${iconFile}" class="weather-icon" width="50">
-                <div class="forecast forecast_temps">
+                <div class="forecast forecast_icon">
+                    <img src="./assets/weather_icons/${iconFile}" class="weather-icon" width="50">
+                </div>
+                <div class="forecast forecast_temps divider-left">
                     <span class="max">H: ${day.temp_max}°</span> /
                     <span class="min">L: ${day.temp_min}°</span>
                 </div>

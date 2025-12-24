@@ -40,6 +40,42 @@ body {
   z-index: 5;
 }
 
-.hf_row{
+.hf_row {
   height: var(--hf_Row-height)
 }
+
+
+.divider {
+
+  &-left::before,
+  &-right::after {
+    content: "|";
+    display: inline-block;
+    margin: 0 5px;
+    color: var(--red);
+    font-weight: 700;
+  }
+}
+
+
+// .divider {
+//   &-left {
+//     &:before {
+//       content: "|";
+//       display: inline-block;
+//       margin: 0 10px;
+//       color: red;
+//       font-weight: 700;
+//     }
+
+//   }
+//   &-right {
+//     &:after {
+//       content: "|";
+//       display: inline-block;
+//       margin: 0 10px;
+//       color: red;
+//       font-weight: 700;
+//     }
+//   }
+// }

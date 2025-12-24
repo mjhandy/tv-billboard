@@ -12,17 +12,19 @@
 
 
 .forecast {
-  &_icon {
-    height: 95%;
-  }
+
 
   &_temp,
-  &_feelLike,
-  &_humidity,
-  &_precip,
-  &_day,
-  &_date,
-  &_temps {
+  &_day {
     margin: 0 10px;
+  }
+  &_icon{
+    margin-right: -5px;
+    height: 100%;
+    width: 50px;
+    img{
+      height: inherit;
+      width: inherit;
+    }
   }
 }

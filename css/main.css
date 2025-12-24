@@ -5,7 +5,8 @@
   --bg-gradient: rgba(0, 0, 0, 0.5);
   --font-size: 140%;
   --black: #000;
-  --white: #fff;
+  --white: #ffffff;
+  --red: rgb(255, 0, 0);
 }
 
 #carousel {
@@ -70,5 +71,13 @@ body {
 
 .hf_row {
   height: var(--hf_Row-height);
+}
+
+.divider-left::before, .divider-right::after {
+  content: "|";
+  display: inline-block;
+  margin: 0 5px;
+  color: var(--red);
+  font-weight: 700;
 }
 /*# sourceMappingURL=main.css.map */

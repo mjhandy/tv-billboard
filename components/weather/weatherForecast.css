@@ -8,10 +8,16 @@
   height: 100%;
 }
 
-.forecast_icon {
-  height: 95%;
-}
-.forecast_temp, .forecast_feelLike, .forecast_humidity, .forecast_precip, .forecast_day, .forecast_date, .forecast_temps {
+.forecast_temp, .forecast_day {
   margin: 0 10px;
+}
+.forecast_icon {
+  margin-right: -5px;
+  height: 100%;
+  width: 50px;
+}
+.forecast_icon img {
+  height: inherit;
+  width: inherit;
 }
 /*# sourceMappingURL=weatherForecast.css.map */
