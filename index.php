@@ -143,9 +143,14 @@
       </div>
       <!-- Clock -->
       <?php if($showClock): ?>
-        <div id="time" class="brand d-flex align-items-center justify-content-center"></div>
-        <link rel="stylesheet" href="./css/clock.css">
-        <script src="./scripts/clock.js"></script>
+        <div id="clock" class="brand d-flex align-items-center justify-content-center">
+          <div id="hours"></div>
+          <div id="colon" class="colon">:</div>
+          <div id="minutes"></div>
+          <div id="ampm"></div>
+        </div>
+        <link rel="stylesheet" href="./components/clock/clock.css">
+        <script src="./components/clock/clock.js"></script>
       <?php endif; ?>
     </div>
     <!-- Weather Start -->

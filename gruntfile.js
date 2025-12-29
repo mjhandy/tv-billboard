@@ -23,8 +23,22 @@ module.exports = function (grunt) {
         {
           expand: true,
           cwd: 'scss',
+          src: [' fuelPrices.scss'],
+          dest: 'css',
+          ext: '.css'
+        },
+        {
+          expand: true,
+          cwd: 'scss',
           src: ['weatherForecast.scss'],
           dest: 'components/weather',
+          ext: '.css'
+        },
+        {
+          expand: true,
+          cwd: 'scss',
+          src: ['clock.scss'],
+          dest: 'components/clock',
           ext: '.css'
         }
       ]

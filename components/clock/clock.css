@@ -1,0 +1,11 @@
+#clock {
+  right: 0;
+}
+#clock .colon {
+  transition: opacity 0.3s ease;
+}
+#clock #ampm {
+  margin-left: 5px;
+  font-size: 90%;
+}
+/*# sourceMappingURL=clock.css.map */
