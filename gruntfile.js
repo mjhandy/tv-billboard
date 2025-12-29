@@ -37,15 +37,22 @@ module.exports = function (grunt) {
         {
           expand: true,
           cwd: 'scss',
+          src: ['cbcRadio.scss'],
+          dest: 'components/cbcRadio',
+          ext: '.css'
+        },
+        {
+          expand: true,
+          cwd: 'scss',
           src: ['clock.scss'],
           dest: 'components/clock',
           ext: '.css'
         }
-      ]
+        ]
       }
 
     },
-        watch: {
+    watch: {
       sass: {
         files: ['scss/**/**.scss'],
         tasks: ['sass']

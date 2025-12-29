@@ -1,0 +1,13 @@
+#cbcRadio {
+  position: absolute;
+  left: 15px;
+  top: 80vh;
+  height: 50px;
+  z-index: 20;
+}
+#cbcRadio video {
+  height: 50px;
+  width: 200px;
+  opacity: 0.6;
+}
+/*# sourceMappingURL=cbcRadio.css.map */
