@@ -118,14 +118,14 @@
     </script>
   <?php endif; ?>
 
+  <?php if($radioPlayer): ?>
   <div id="cbcRadio">
-    <video id="cbcPlayer" controls autoplay playsinline>
+    <audio id="cbcPlayer" controls autoplay>
       <source src="https://cbcradiolive.akamaized.net/hls/live/2040987/ES_R1AHF/master.m3u8" type="application/vnd.apple.mpegurl">
-    </video>
+    </audio>
   </div>       
   <link rel="stylesheet" href="./components/cbcRadio/cbcRadio.css">
-  <!-- <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script> -->
-  <!-- <script src="./components/cbcRadio/cbcRadio.js"><script> -->
+  <?php endif; ?>
 
   <!-- Billboard Images -->
   <div 

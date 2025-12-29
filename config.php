@@ -4,3 +4,4 @@
 $showClock = true;
 $showFuel = true;
 $debugBlock = false;
+$radioPlayer = true;
