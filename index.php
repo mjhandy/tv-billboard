@@ -119,12 +119,21 @@
   <?php endif; ?>
 
   <?php if($radioPlayer): ?>
-  <div id="cbcRadio">
-    <audio id="cbcPlayer" controls autoplay>
-      <source src="https://cbcradiolive.akamaized.net/hls/live/2040987/ES_R1AHF/master.m3u8" type="application/vnd.apple.mpegurl">
-    </audio>
-  </div>       
-  <link rel="stylesheet" href="./components/cbcRadio/cbcRadio.css">
+    <iframe 
+      id="audioIframe"
+      src="./components/cbcRadio/cbcRadio.html"></iframe>
+      <style>
+        #audioIframe{
+          position: absolute;
+          z-index: 20;
+          width: 200px;
+          height: 50px;
+          background: transparent;
+          top: 8vh;
+          left: 15px;
+
+        }
+      </style>
   <?php endif; ?>
 
   <!-- Carousel Start -->
