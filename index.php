@@ -185,10 +185,6 @@
   </script>
   <!-- Asset loading and slider construction, clock and news feed -->
   <script>    
-
-
-
-
     // news RSS
     async function loadRSS() {
       try {
@@ -221,7 +217,6 @@
     
     //load the news rss feed
     loadRSS();
-
   </script>
 
 </body>
