@@ -150,6 +150,15 @@
   <script src="./components/carousel/carousel.js"></script>
   <link rel="stylesheet" href="./components/carousel/carousel.css">
   <!-- Carousel End -->
+      <!-- Weather Start -->
+    <div id="weather" class="hf_row d-flex flex-row ">
+      <div id="forecastCarousel" class="carousel slide d-flex align-items-center flex-grow-1" data-bs-ride="carousel" data-bs-pause="false" data-bs-interval="20000">
+        <div id="forecastInner" class="carousel-inner" ></div>
+      </div>
+    </div>
+    <script src="./components/weather/weather-proxy.js"></script>
+    <link rel="stylesheet" href="./components/weather/weatherForecast.css">
+    <!-- Weather End -->
   <!-- Footer -->
   <div id="footer" class="d-flex flex-column">
     <div id="news" class="hf_row d-flex flex-row">
@@ -171,15 +180,7 @@
         <script src="./components/clock/clock.js"></script>
       <?php endif; ?>
     </div>
-    <!-- Weather Start -->
-    <div id="weather" class="hf_row d-flex flex-row ">
-      <div id="forecastCarousel" class="carousel slide d-flex align-items-center flex-grow-1" data-bs-ride="carousel" data-bs-pause="false" data-bs-interval="20000">
-        <div id="forecastInner" class="carousel-inner" ></div>
-      </div>
-    </div>
-    <script src="./components/weather/weather-proxy.js"></script>
-    <link rel="stylesheet" href="./components/weather/weatherForecast.css">
-    <!-- Weather End -->
+
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
