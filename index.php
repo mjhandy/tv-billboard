@@ -57,6 +57,17 @@
   </style>
 </head>
 <body>
+  <div class="container">
+    <div class="row">
+      <div class="col-9 carousel"></div>
+      <div class="col-3 info"></div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+
+      </div>
+    </div>
+  </div>
   <div id="header" class="hf_row d-flex flex-row">
     <?php if($showFuel): ?>
       <div id="fuelLogo" class="brand d-flex align-items-center justify-content-center">
